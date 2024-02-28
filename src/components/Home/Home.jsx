@@ -34,7 +34,10 @@ function Home() {
           <Form.Group className="mb-3 row">
             <div className="col-sm-12 col-lg-3"></div>
             <div className="col-sm-12 col-lg-9">
-              <Form.Select aria-label="Select what you need from the universe today">
+              <Form.Select
+                className="w-100"
+                aria-label="Select what you need from the universe today"
+              >
                 <option value="" disabled selected>
                   What do you need from the Universe today?
                 </option>
