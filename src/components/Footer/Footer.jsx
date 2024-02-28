@@ -26,8 +26,9 @@ function Footer() {
   }, []);
 
   return (
-    <div style={{ position: "sticky"}}>
+    <div style={{ minHeight: "calc(100vh - 100px)" }}>
       <Navbar
+        fixed="bottom"
         style={{
           height: "100px",
           backgroundColor: "#F5F5F5",
