@@ -14,16 +14,16 @@ function App() {
 
   return (
     <>
-    <Router>
-      <Header/>
-      <Routes>
-        <Route path="Home" element={<Home/>} />
-        <Route path="AboutApp" element={<AboutApp/>} />
-        <Route path="Contact" element={<Contact/>} />
-        <Route path="AnswerPage" element={<AnswerPage/>} />
-      </Routes>
-    </Router>
-    <Footer/>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="AboutApp" element={<AboutApp />} />
+          <Route path="Contact" element={<Contact />} />
+          <Route path="AnswerPage" element={<AnswerPage />} />
+        </Routes>
+      </Router>
+      <Footer />
     </>
   )
 }
