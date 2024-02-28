@@ -14,13 +14,13 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavLink to="" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                Home
+                Ask the Universe
               </NavLink>
               <NavLink to="/about" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                About the App
+                About
               </NavLink>
               <NavLink to="/contact" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                About Us
+                Contact Us
               </NavLink>
               <NavLink to="/answers" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                 Answers
