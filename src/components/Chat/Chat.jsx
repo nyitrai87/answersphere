@@ -1,67 +1,68 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const OPENAI_KEY = import.meta.env.VITE_OPENAI_KEY;
+
 const Chat = () => {
-    
-    const [input, setInput] = useState('');
-    const [messages, setMessages] = useState([]);
+
+   const [input, setInput] = useState('');
+   const [messages, setMessages] = useState([]);
 
 
-    const handleInputChange = (e) => {
-        setInput(e.target.value);
-    };
+   const handleInputChange = (e) => {
+      setInput(e.target.value);
+   };
 
-    const handleSendMessage = async () => {
+   const handleSendMessage = async () => {
 
-    // Make a request to the ChatGPT API with the user input
-        const response = await axios.post(
+      // Make a request to the ChatGPT API with the user input
+      const response = await axios.post(
          'https://api.openai.com/v1/chat/completions',
-        {
-          messages: [
-             { role: 'system', content: 'You are a helpful assistant.' },
-             { role: 'user', content: input },
-             ],
+         {
+            messages: [
+               { role: 'system', content: 'You are a helpful assistant.' },
+               { role: 'user', content: input },
+            ],
 
          },
 
          {
-          headers: {
-             'Content-Type': 'application/json',
-             Authorization: `Bearer YOUR_OPENAI_API_KEY`,
-          },
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: OPENAI_KEY,
+            },
          }
-        );
+      );
 
-     // Update the conversation history with the response from ChatGPT
-        setMessages([...messages, { role: 'assistant', content: response.data.choices[0].message.content }]);
+      // Update the conversation history with the response from ChatGPT
+      setMessages([...messages, { role: 'assistant', content: response.data.choices[0].message.content }]);
 
-     // Clear the input field
-     setInput('');
+      // Clear the input field
+      setInput('');
 
-  };
+   };
 
 
-  return (
+   return (
 
-    <div>
-     <div>
-         {messages.map((message, index) => (
+      <div>
+         <div>
+            {messages.map((message, index) => (
 
-          <div key={index} className={message.role}>
+               <div key={index} className={message.role}>
 
-            {message.content}
+                  {message.content}
 
-          </div>
-         ))}
-     </div>
-     <div>
-        <input type="text" value={input} onChange={handleInputChange} />
-        <button onClick={handleSendMessage}>Send</button>
-     </div>
+               </div>
+            ))}
+         </div>
+         <div>
+            <input type="text" value={input} onChange={handleInputChange} />
+            <button onClick={handleSendMessage}>Send</button>
+         </div>
 
-    </div>
-  );
+      </div>
+   );
 
 };
 
