@@ -39,7 +39,7 @@ function Home() {
                 aria-label="Select what you need from the universe today"
               >
                 <option value="" disabled selected>
-                  What do you need from the Universe today?
+                  What do you need today?
                 </option>
                 <option value="1">Ask a question</option>
                 <option value="2">Get advice</option>
@@ -61,7 +61,7 @@ function Home() {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Ask the universe
+            Ask the Universe
           </Button>
         </Form>
       </Container>
