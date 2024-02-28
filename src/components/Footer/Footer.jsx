@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { ArrowUpCircle } from "react-bootstrap-icons";
+import { ArrowUpCircle, HeartFill } from "react-bootstrap-icons";
 import { Navbar, Container, Row, Col } from "react-bootstrap";
+import background from "../../../public/images/footer_back.png";
 
 function Footer() {
   const [showButton, setShowButton] = useState(false);
@@ -25,37 +26,47 @@ function Footer() {
   }, []);
 
   return (
-    <>
-      <div style={{ height: "50px" }}></div>
-
+    <div style={{ position: "sticky"}}>
       <Navbar
-        fixed="bottom"
-        style={{ backgroundColor: "white", color: "black" }}
-        variant="light"
+        style={{
+          height: "100px",
+          backgroundColor: "#F5F5F5",
+          color: "black",
+          padding: "10px",
+        }}
       >
         <Container>
-          <Row className="justify-content-end">
-            <Col xs="auto" style={{ marginLeft: "20px" }}>
-              <ArrowUpCircle
-                size={24}
-                onClick={scrollToTop}
-                style={{ display: showButton ? "block" : "none" }}
-              />
-            </Col>
-          </Row>
           <Row className="justify-content-center">
             <Col>
               <Navbar.Text
                 style={{ fontSize: "smaller", color: "black" }}
                 className="text-center"
               >
-                © 2024 Created with support from EdX
+                © 2024 Created with{" "}
+                <HeartFill size={16} style={{ verticalAlign: "middle" }} /> and{" "}
+                <a
+                  href="https://skillsforlife.edx.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  EdX
+                </a>{" "}
+                support.
               </Navbar.Text>
+            </Col>
+          </Row>
+          <Row className="justify-content-end">
+            <Col xs="auto" style={{ marginLeft: "20px" }}>
+              <ArrowUpCircle
+                size={22}
+                onClick={scrollToTop}
+                style={{ display: showButton ? "block" : "none" }}
+              />
             </Col>
           </Row>
         </Container>
       </Navbar>
-    </>
+    </div>
   );
 }
 
