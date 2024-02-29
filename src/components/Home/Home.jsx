@@ -68,7 +68,12 @@ function Home() {
               </div>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              className="roboto-bold"
+              style={{ backgroundColor: "#3BA1C8", padding: "10px 22px", color: "white" , border: "none", borderRadius: "20px" }}
+            >
               Ask the Universe
             </Button>
           </Form>
