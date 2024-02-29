@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import appLogo from "/images/logoBagel.png";
 import { Button } from "react-bootstrap";
-import "./styles.css";
+import "./index.css";
 
 function Header() {
   return (

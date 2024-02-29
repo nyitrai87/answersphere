@@ -29,10 +29,10 @@ function Footer() {
       <Navbar
         fixed="bottom"
         style={{
-          height: "100px",
+          height: "96px",
           backgroundColor: "#F5F5F5",
           color: "black",
-          padding: "10px",
+          padding: "8px",
         }}
       >
         <Container>

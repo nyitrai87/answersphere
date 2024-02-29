@@ -12,7 +12,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import logo from "/images/logoBagel.png";
 import Anna from "/images/Anna-avatar.png";
-import "./styles.css";
+import "./index.css";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
