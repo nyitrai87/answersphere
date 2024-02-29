@@ -36,7 +36,7 @@ function Home() {
 
   return (
     <>
-      <Container className="my-5">
+      <Container className="mt-5">
         <Card className="py-4" style={{ backgroundColor: "#3BA1C8" }}>
           <Card.Body>
             <Card.Text

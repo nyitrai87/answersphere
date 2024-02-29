@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/Container";
+import "./styles.css";
 
 function AboutApp() {
   return (

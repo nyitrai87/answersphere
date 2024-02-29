@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 const OPENAI_KEY = import.meta.env.VITE_OPENAI_KEY;
 
 const Chat = () => {
-
    const [input, setInput] = useState('');
    const [messages, setMessages] = useState([]);
-
 
    const handleInputChange = (e) => {
       setInput(e.target.value);
@@ -23,9 +21,7 @@ const Chat = () => {
                { role: 'system', content: 'You are a helpful assistant.' },
                { role: 'user', content: input },
             ],
-
          },
-
          {
             headers: {
                'Content-Type': 'application/json',
@@ -39,20 +35,14 @@ const Chat = () => {
 
       // Clear the input field
       setInput('');
-
    };
 
-
    return (
-
       <div>
          <div>
             {messages.map((message, index) => (
-
                <div key={index} className={message.role}>
-
                   {message.content}
-
                </div>
             ))}
          </div>
@@ -60,11 +50,8 @@ const Chat = () => {
             <input type="text" value={input} onChange={handleInputChange} />
             <button onClick={handleSendMessage}>Send</button>
          </div>
-
       </div>
    );
-
 };
-
 
 export default Chat;
