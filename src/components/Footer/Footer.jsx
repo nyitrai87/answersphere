@@ -44,7 +44,11 @@ function Footer() {
                 className="text-center"
               >
                 © 2024 Created with{" "}
-                <HeartFill size={16} style={{ verticalAlign: "middle" }} /> and{" "}
+                <HeartFill
+                  size={16}
+                  style={{ verticalAlign: "middle", color: "#3BA1C8" }}
+                />{" "}
+                and{" "}
                 <a
                   href="https://skillsforlife.edx.org"
                   target="_blank"
@@ -61,7 +65,7 @@ function Footer() {
               <ArrowUpCircle
                 size={22}
                 onClick={scrollToTop}
-                style={{ display: showButton ? "block" : "none" }}
+                style={{ color: "#3BA1C8", display: showButton ? "block" : "none" }}
               />
             </Col>
           </Row>
