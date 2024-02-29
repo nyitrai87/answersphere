@@ -18,19 +18,8 @@ function Home() {
 
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData.entries());
-    const chatCompletion = await openai.chat.completions.create({
-      messages: [
-        { role: "system", content: "You are a helpful assistant." },
-        {
-          role: "user",
-          content: `Hi, my name is ${formValues.name}.\nI would like to ${formValues.need}.\n${formValues}\nPlease could you respond with only a paragraph containing at max 100 words.`,
-        },
-      ],
-      model: "gpt-3.5-turbo",
-    });
 
     console.log(formValues);
-    console.log(chatCompletion);
   }
 
   return (
