@@ -1,65 +1,123 @@
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/esm/Container";
+import "./styles.css";
+
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
 function Home() {
+  //Handle form
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    //User input values
+    const formData = new FormData(e.target);
+    const formValues = Object.fromEntries(formData.entries());
+
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        {
+          role: "user",
+          content: `Hi, my name is ${formValues.name}.\n I would like to ${formValues.need}.\n${formValues}\n Please could you respond with only a paragraph containing at max 100 words.`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+    });
+
+    console.log(chatCompletion);
+    console.log(formValues);
+  }
+
   return (
     <>
-    <Card className='py-5'>
-      <Card.Body>
-        <Card.Text>
-            In a world inundated with questions and uncertainties,
-            Answer Sphere emerges as a beacon of clarity and
-            guidance. 
-            Our app offers users a unique opportunity to embark on
-            a journey of self-discovery by providing personalized
-            insights sourced from a diverse array of inspirations.
-        </Card.Text>
-      </Card.Body>
-      <Card.Body>
-        <Card.Text>
-            Fill out the form below to find the answer you've been looking for.
-        </Card.Text>
-      </Card.Body>
-    </Card>
+      <Container className="my-5">
+        <Card className="py-4" style={{ backgroundColor: "#3BA1C8" }}>
+          <Card.Body>
+            <Card.Text
+              className="roboto-bold"
+              style={{ color: "white", fontSize: "62px" }}
+            >
+              Ask the Universe,
+              <br /> Receive its Wisdom
+            </Card.Text>
+          </Card.Body>
+          <Card.Body>
+            <Card.Text
+              className="roboto-bold"
+              style={{ color: "white", fontSize: "22px" }}
+            >
+              Fill in all fields and receive what you seek - it is also looking
+              for you!
+            </Card.Text>
+          </Card.Body>
+        </Card>
 
-<Container>
-  <Form className='py-5'>
+        <Container style={{ backgroundColor: "#F5F5F5", marginTop: "20px" }}>
+          <Form className="py-5" onSubmit={handleFormSubmit}>
+            <Form.Group className="mb-3 row">
+              <div className="col-12 col-lg-9">
+                <Form.Control
+                  type="text"
+                  placeholder="What is your name?"
+                  name="name"
+                />
+              </div>
+            </Form.Group>
 
-    <Form.Group className="mb-3 row">
-      <Form.Label className="col-sm-12 col-lg-3">Your name:</Form.Label>
-      <div className="col-sm-12 col-lg-9">
-        <Form.Control type="username" placeholder="name"/>
-      </div>
-    </Form.Group>
+            <Form.Group className="mb-3 row">
+              <div className="col-12 col-lg-9">
+                <Form.Select
+                  className="w-100"
+                  aria-label="Select what you need from the universe today"
+                  name="need"
+                >
+                  <option value={null} disabled selected>
+                    What do you need today?
+                  </option>
+                  <option>Ask a question</option>
+                  <option>Get advice</option>
+                  <option>Find inspiration</option>
+                  <option>Daily affirmation</option>
+                  <option>Surprise me</option>
+                  <option>Decide: Yes or No</option>
+                </Form.Select>
+              </div>
+            </Form.Group>
 
-    <Form.Group className="mb-3 row">
-      <Form.Label className="col-sm-12 col-lg-3">What kind of help would you like?</Form.Label>
-      <div className="col-sm-12 col-lg-9"> 
-        <Form.Select>
-          <option value="1">To ask a question</option>
-          <option value="2">To recieve some advice</option>
-          <option value="3">Some inspiration</option>
-          <option value="4">Surprise me</option>
-        </Form.Select>
-      </div>
-    </Form.Group>
+            <Form.Group className="mb-3 row">
+              <div className="col-12 col-lg-9">
+                <Form.Control
+                  type="text"
+                  placeholder="Share what's on your mind..."
+                  name="text"
+                />
+              </div>
+            </Form.Group>
 
-    <Form.Group className="mb-3 row">
-      <Form.Label className="col-sm-12 col-lg-3">What would you like to focus on today?</Form.Label>
-      <div  className="col-sm-12 col-lg-9">
-      <Form.Control type="focus" placeholder="e.g family, home-life, work-life, healthy habits"/>
-      </div>
-    </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Ask the universe
-      </Button>
-
-    </Form>
-</Container>
-
+            <Button
+              variant="primary"
+              type="submit"
+              className="roboto-bold"
+              style={{
+                backgroundColor: "#3BA1C8",
+                padding: "10px 22px",
+                marginTop: "20px",
+                color: "white",
+                border: "none",
+                borderRadius: "20px",
+              }}
+            >
+              Ask the Universe
+            </Button>
+          </Form>
+        </Container>
+      </Container>
     </>
   );
 }
