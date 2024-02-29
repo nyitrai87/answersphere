@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowUpCircle, HeartFill } from "react-bootstrap-icons";
 import { Navbar, Container, Row, Col } from "react-bootstrap";
-import background from "../../../public/images/footer_back.png";
 
 function Footer() {
   const [showButton, setShowButton] = useState(false);
@@ -26,7 +25,7 @@ function Footer() {
   }, []);
 
   return (
-    <div style={{ minHeight: "calc(100vh - 100px)" }}>
+    <>
       <Navbar
         fixed="bottom"
         style={{
@@ -71,7 +70,7 @@ function Footer() {
           </Row>
         </Container>
       </Navbar>
-    </div>
+    </>
   );
 }
 

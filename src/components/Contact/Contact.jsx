@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
-import logo from "../../../public/images/logoBagel.png";
-import Anna from "../../../public/images/Anna-avatar.png";
+import logo from "/images/logoBagel.png";
+import Anna from "/images/Anna-avatar.png";
 import "./styles.css";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
