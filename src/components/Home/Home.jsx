@@ -4,10 +4,38 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
 import "./styles.css";
 
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_KEY,
+  dangerouslyAllowBrowser: true,
+});
+
 function Home() {
+  //Handle form
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const formValues = Object.fromEntries(formData.entries());
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        {
+          role: "user",
+          content: `Hi, my name is ${formValues.name}.\nI would like to ${formValues.need}.\n${formValues}\nPlease could you respond with only a paragraph containing at max 100 words.`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+    });
+
+    console.log(formValues);
+    console.log(chatCompletion);
+  }
+
   return (
     <>
-      <Container className="my-5" >
+      <Container className="my-5">
         <Card className="py-4" style={{ backgroundColor: "#3BA1C8" }}>
           <Card.Body>
             <Card.Text
@@ -30,12 +58,13 @@ function Home() {
         </Card>
 
         <Container style={{ backgroundColor: "#F5F5F5", marginTop: "20px" }}>
-          <Form className="py-5">
+          <Form className="py-5" onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3 row">
               <div className="col-12 col-lg-9">
                 <Form.Control
-                  type="username"
+                  type="text"
                   placeholder="What is your name?"
+                  name="name"
                 />
               </div>
             </Form.Group>
@@ -45,16 +74,17 @@ function Home() {
                 <Form.Select
                   className="w-100"
                   aria-label="Select what you need from the universe today"
+                  name="need"
                 >
-                  <option value="" disabled selected>
+                  <option value={null} disabled selected>
                     What do you need today?
                   </option>
-                  <option value="1">Ask a question</option>
-                  <option value="2">Get advice</option>
-                  <option value="3">Find inspiration</option>
-                  <option value="4">Daily affirmation</option>
-                  <option value="5">Surprise me</option>
-                  <option value="6">Decide: Yes or No</option>
+                  <option>Ask a question</option>
+                  <option>Get advice</option>
+                  <option>Find inspiration</option>
+                  <option>Daily affirmation</option>
+                  <option>Surprise me</option>
+                  <option>Decide: Yes or No</option>
                 </Form.Select>
               </div>
             </Form.Group>
@@ -62,8 +92,9 @@ function Home() {
             <Form.Group className="mb-3 row">
               <div className="col-12 col-lg-9">
                 <Form.Control
-                  type="focus"
+                  type="text"
                   placeholder="Share what's on your mind..."
+                  name="text"
                 />
               </div>
             </Form.Group>
@@ -72,7 +103,14 @@ function Home() {
               variant="primary"
               type="submit"
               className="roboto-bold"
-              style={{ backgroundColor: "#3BA1C8", padding: "10px 22px", marginTop: "20px", color: "white" , border: "none", borderRadius: "20px" }}
+              style={{
+                backgroundColor: "#3BA1C8",
+                padding: "10px 22px",
+                marginTop: "20px",
+                color: "white",
+                border: "none",
+                borderRadius: "20px",
+              }}
             >
               Ask the Universe
             </Button>
