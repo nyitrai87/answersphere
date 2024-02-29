@@ -7,8 +7,8 @@ import "./styles.css";
 function Home() {
   return (
     <>
-      <Container className="mt-5">
-        <Card className="py-5" style={{ backgroundColor: "#3BA1C8" }}>
+      <Container className="my-5" >
+        <Card className="py-4" style={{ backgroundColor: "#3BA1C8" }}>
           <Card.Body>
             <Card.Text
               className="roboto-bold"
@@ -29,7 +29,7 @@ function Home() {
           </Card.Body>
         </Card>
 
-        <Container>
+        <Container style={{ backgroundColor: "#F5F5F5", marginTop: "20px" }}>
           <Form className="py-5">
             <Form.Group className="mb-3 row">
               <div className="col-12 col-lg-9">
@@ -72,7 +72,7 @@ function Home() {
               variant="primary"
               type="submit"
               className="roboto-bold"
-              style={{ backgroundColor: "#3BA1C8", padding: "10px 22px", color: "white" , border: "none", borderRadius: "20px" }}
+              style={{ backgroundColor: "#3BA1C8", padding: "10px 22px", marginTop: "20px", color: "white" , border: "none", borderRadius: "20px" }}
             >
               Ask the Universe
             </Button>
