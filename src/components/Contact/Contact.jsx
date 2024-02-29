@@ -5,12 +5,13 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
 import emailjs from "@emailjs/browser";
-import { EnvelopeFill, HeartFill } from "react-bootstrap-icons";
+import { EnvelopeFill, HeartFill, Github } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import logo from "../../../public/images/logoBagel.png";
+import Anna from "../../../public/images/Anna-avatar.png";
 import "./styles.css";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
@@ -95,6 +96,21 @@ function Contact() {
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
+              <p className="mt-2">
+                Rowan Kinross{" "}
+                <a
+                  href="https://github.com/RowanKinross"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  <Github
+                    size={24}
+                    style={{ color: "black", marginBottom: "3px" }}
+                    className="ms-1"
+                  />
+                </a>
+              </p>
             </Col>
             <Col xs={6} md={4}>
               <Image
@@ -102,6 +118,21 @@ function Contact() {
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
+              <p className="mt-2">
+                Adam Nyitrai{" "}
+                <a
+                  href="https://github.com/nyitrai87"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  <Github
+                    size={24}
+                    style={{ color: "black", marginBottom: "3px" }}
+                    className="ms-1"
+                  />
+                </a>
+              </p>
             </Col>
             <Col xs={6} md={4}>
               <Image
@@ -109,25 +140,79 @@ function Contact() {
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
-            </Col>{" "}
+              <p className="mt-2">
+                Isabel Solana{" "}
+                <a
+                  href="https://github.com/Joeviser"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  <Github
+                    size={24}
+                    style={{ color: "black", marginBottom: "3px" }}
+                    className="ms-1"
+                  />
+                </a>
+              </p>
+            </Col>
             <Col xs={6} md={4}>
               <Image
                 src={logo}
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
-            </Col>{" "}
+              <p className="mt-2">
+                Ioana Iosub{" "}
+                <a
+                  href="https://github.com/IIosub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  <Github
+                    size={24}
+                    style={{ color: "black", marginBottom: "3px" }}
+                    className="ms-1"
+                  />
+                </a>
+              </p>
+            </Col>
             <Col xs={6} md={4}>
               <Image
-                src={logo}
+                src={Anna}
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
+              <p className="mt-2">
+                Anna Chernova{" "}
+                <a
+                  href="https://github.com/Anna702"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  <Github
+                    size={24}
+                    style={{ color: "black", marginBottom: "3px" }}
+                    className="ms-1"
+                  />
+                </a>
+              </p>
             </Col>
           </Row>
         </Container>
-        <h3 style={{ marginTop: "20px" }}>Contact Us</h3>
-        <Container>
+
+        <Container
+          style={{
+            borderRadius: "10px",
+            padding: "15px",
+            backgroundColor: "#F5F5F5",
+          }}
+        >
+          <h3 style={{ marginTop: "10px", marginBottom: "20px" }}>
+            Contact Us
+          </h3>
           <Form ref={form} onSubmit={sendEmail}>
             <Form.Group className="text-start mb-3">
               <Form.Label>Email address:</Form.Label>
