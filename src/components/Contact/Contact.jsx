@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Container from "react-bootstrap/Container";
 import emailjs from "@emailjs/browser";
+import { EnvelopeFill } from "react-bootstrap-icons";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
@@ -74,8 +75,24 @@ function Contact() {
                 rows={5}
               />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleShow}>
-              Send
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={handleShow}
+              className="roboto-bold"
+              style={{
+                backgroundColor: "#3BA1C8",
+                padding: "10px 22px",
+                marginTop: "20px",
+                color: "white",
+                border: "none",
+                borderRadius: "20px",
+              }}
+            >
+              Send{" "}
+              <EnvelopeFill
+                style={{ marginLeft: "5px", marginBottom: "3px" }}
+              />
             </Button>
 
             <Modal show={show} onHide={handleClose}>
