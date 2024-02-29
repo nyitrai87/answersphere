@@ -3,13 +3,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import appLogo from "../../../public/images/logoBagel.png";
+import { Button } from "react-bootstrap";
+import "./styles.css";
 
 function Header() {
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="/" className="roboto-regular">
             <img
               src={appLogo}
               alt="App Logo"
@@ -57,6 +59,21 @@ function Header() {
                 Answers
               </NavLink>
             </Nav>
+            <Button
+              variant="primary"
+              type="submit"
+              className="roboto-bold"
+              style={{
+                backgroundColor: "#3BA1C8",
+                padding: "10px 22px",
+                marginLeft: "10px",
+                color: "white",
+                border: "none",
+                borderRadius: "20px",
+              }}
+            >
+              Log in
+            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
