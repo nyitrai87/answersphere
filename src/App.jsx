@@ -3,15 +3,12 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
 
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 import Home from "./components/Home/Home";
-import AboutApp from "./components/AboutApp/AboutApp";
-import Contact from "./components/Contact/Contact";
-import AnswerPage from "./components/AnswerPage/AnswerPage";
-import Footer from "./components/Footer/Footer";
-
-
-
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Answers from "./components/Answers";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,9 +17,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutApp />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/answers" element={<AnswerPage />} />
+          <Route path="/answers" element={<Answers />} />
         </Routes>
       </Router>
       <Footer />
