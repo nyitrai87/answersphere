@@ -2,6 +2,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
+import "./styles.css";
 
 function Home() {
   return (
@@ -9,15 +10,21 @@ function Home() {
       <Container className="mt-5">
         <Card className="py-5" style={{ backgroundColor: "#3BA1C8" }}>
           <Card.Body>
-            <Card.Text style={{ color: "white", fontSize: "62px" }}>
+            <Card.Text
+              className="roboto-bold"
+              style={{ color: "white", fontSize: "62px" }}
+            >
               Ask the Universe,
               <br /> Receive its Wisdom
             </Card.Text>
           </Card.Body>
           <Card.Body>
-            <Card.Text>
-              Fill in all fields and receive what you seek - for it seeks you
-              too:
+            <Card.Text
+              className="roboto-bold"
+              style={{ color: "white", fontSize: "22px" }}
+            >
+              Fill in all fields and receive what you seek - it is also looking
+              for you!
             </Card.Text>
           </Card.Body>
         </Card>
