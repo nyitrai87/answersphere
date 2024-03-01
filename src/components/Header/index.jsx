@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import appLogo from "/images/logoBagel.png";
 import { Button } from "react-bootstrap";
 import "./index.css";
@@ -22,13 +22,31 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink to="" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              <NavLink
+                to=""
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 Ask the Universe
               </NavLink>
-              <NavLink to="/about" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              <NavLink
+                to="/about"
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 About
               </NavLink>
-              <NavLink to="/contact" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              <NavLink
+                to="/contact"
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 Contact Us
               </NavLink>
               <NavLink
@@ -44,15 +62,9 @@ function Header() {
             <Button
               variant="primary"
               type="submit"
-              className="roboto-bold"
-              style={{
-                backgroundColor: "#3BA1C8",
-                padding: "10px 22px",
-                marginLeft: "10px",
-                color: "white",
-                border: "none",
-                borderRadius: "20px",
-              }}
+              className="roboto-bold custom-login"
+              as={Link}
+              to="/login"
             >
               Log in
             </Button>

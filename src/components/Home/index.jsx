@@ -103,7 +103,7 @@ function Home() {
             <Button
               variant="primary"
               type="submit"
-              className="roboto-bold"
+              className="roboto-bold custom-askTheUniverse"
               style={{
                 backgroundColor: "#3BA1C8",
                 padding: "10px 22px",
