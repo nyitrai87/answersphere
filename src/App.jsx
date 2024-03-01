@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
+import "./App.css";
 
+import LoginModal from "./components/LoginModal";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -14,7 +15,9 @@ import LogIn from "./components/LogIn";
 function App() {
   return (
     <>
+
       <Router>
+        <LoginModal />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
