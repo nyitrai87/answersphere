@@ -65,12 +65,13 @@ function LogIn() {
       setIsSigningIn(true);
       doSignInWithGoogle().catch(err => {
         setIsSigningIn(false);
+        setSignInMessage(`You have signed in with google`)
       });
     }
   }
 
   return (
-    <Container className="p-3 my-5 d-flex flex-column">
+    <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
       {/* the Tabs component from React Bootstrap. 
         We pass to it the current active tab (activeKey) + the tab change handler function (onSelect) + classes for styling. */}
       <Tabs
@@ -148,7 +149,7 @@ function LogIn() {
           {activeTab === "login" ? "Register" : "Sign in"}
         </button>
       </p>
-    </Container>
+    </Form>
   );
 }
 
