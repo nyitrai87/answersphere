@@ -3,3 +3,25 @@
   font-weight: 800;
   font-style: normal;
 }
+
+.jumbotron {
+  background-color: #3BA1C8;
+  color: #fff;
+}
+
+.jumbo-txt-lg {
+  font-size: 62px;
+}
+
+.jumbo-txt-sm {
+  font-size: 22px;
+}
+
+.ask-container {
+  background-color: #F5F5F5;
+  margin-top: 20px;
+}
+
+.ask-btn {
+  margin-top: 20px;
+}

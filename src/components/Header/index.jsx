@@ -1,22 +1,15 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import appLogo from "/images/logoBagel.png";
-import { Button } from "react-bootstrap";
 import "./index.css";
 
 function Header() {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
+      <Navbar expand="lg" className="bg-body-tertiary custom-nav" fixed="top">
         <Container>
           <Navbar.Brand href="/" className="roboto-regular">
-            <img
-              src={appLogo}
-              alt="App Logo"
-              style={{ height: "50px", marginRight: "10px" }}
-            />
+            <img className="app-logo" src={appLogo} alt="App Logo" />
             AnswerSphere
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -44,15 +37,7 @@ function Header() {
             <Button
               variant="primary"
               type="submit"
-              className="roboto-bold"
-              style={{
-                backgroundColor: "#3BA1C8",
-                padding: "10px 22px",
-                marginLeft: "10px",
-                color: "white",
-                border: "none",
-                borderRadius: "20px",
-              }}
+              className="roboto-bold custom-btn login-btn"
             >
               Log in
             </Button>

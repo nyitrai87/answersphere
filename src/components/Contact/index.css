@@ -12,5 +12,51 @@
 
 .smaller-avatar {
   width: 120px;
+  height: 120px;
   margin: 10px;
+}
+
+.about-us {
+  text-align: justify;
+}
+
+.as-link {
+  font-weight: bold;
+  color: #3BA1C8;
+  text-decoration: none;
+}
+
+.edx-link {
+  color: #FB5543;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.gh-logo {
+  color: #000;
+  margin-bottom: "3px";
+}
+
+.contact-container {
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #F5F5F5;
+}
+
+.contact-container h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.send-btn {
+  margin-top: 20px;
+}
+
+.envelope-icon {
+  margin: 0 0 3px 5px;
+}
+
+.heart-icon {
+  vertical-align: middle;
+  color: #3BA1C8;
 }

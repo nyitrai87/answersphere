@@ -1,15 +1,9 @@
+import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import Container from "react-bootstrap/Container";
-import emailjs from "@emailjs/browser";
-import { EnvelopeFill, HeartFill, Github } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
+import { Button, Form, Modal, Container, Col, Row, Image } from "react-bootstrap";
+import { EnvelopeFill, HeartFill, Github } from "react-bootstrap-icons";
 import logo from "/images/logoBagel.png";
 import Anna from "/images/Anna-avatar.png";
 import "./index.css";
@@ -41,26 +35,18 @@ function Contact() {
 
   return (
     <>
-      <Container className="mt-5">
-        <h2 style={{ marginBottom: "0" }}>About Us</h2>
-        <Container className="about-us mt-5" style={{ textAlign: "justify" }}>
+      <Container>
+        <h2>About Us</h2>
+        <Container className="about-us mt-5">
           <p>
-            <span style={{ fontWeight: "bold", color: "#3BA1C8" }}>
-              <a
-                href="https://github.com/nyitrai87/answersphere"
-                style={{ color: "#3BA1C8", textDecoration: "none" }}
-              >
-                AnswerSphere
-              </a>
-            </span>{" "}
+            <Link className="as-link" to="https://github.com/nyitrai87/answersphere" target="_blank">
+              AnswerSphere
+            </Link>{" "}
             was created by 5 international students of the{" "}
             <Link
+              className="edx-link"
               to="https://www.edx.org/boot-camps/coding/skills-bootcamp-in-front-end-web-development"
-              style={{
-                color: "#FB5543",
-                textDecoration: "none",
-                fontWeight: "bold",
-              }}
+              target="_blank"
             >
               EdX Skills Bootcamp in Front-End Web Development
             </Link>{" "}
@@ -69,19 +55,11 @@ function Contact() {
           </p>
           <p>
             At the{" "}
-            <HeartFill
-              size={16}
-              style={{ verticalAlign: "middle", color: "#3BA1C8" }}
-            />{" "}
+            <HeartFill className="heart-icon" size={16} />{" "}
             of the initiative to create{" "}
-            <span style={{ fontWeight: "bold", color: "#3BA1C8" }}>
-              <a
-                href="https://github.com/nyitrai87/answersphere"
-                style={{ color: "#3BA1C8", textDecoration: "none" }}
-              >
-                AnswerSphere
-              </a>
-            </span>{" "}
+            <Link className="as-link" to="https://github.com/nyitrai87/answersphere" target="_blank">
+              AnswerSphere
+            </Link>{" "}
             lies a dynamic blend of ambition and curiosity. It was more than
             just crafting a digital solution: it was an opportunity to showcase
             our skills in development, to discover the power of creativity,
@@ -104,11 +82,7 @@ function Contact() {
                   rel="noopener noreferrer"
                   className="text-decoration-none"
                 >
-                  <Github
-                    size={24}
-                    style={{ color: "black", marginBottom: "3px" }}
-                    className="ms-1"
-                  />
+                  <Github size={24} className="ms-1 gh-logo" />
                 </a>
               </p>
             </Col>
@@ -126,11 +100,7 @@ function Contact() {
                   rel="noopener noreferrer"
                   className="text-decoration-none"
                 >
-                  <Github
-                    size={24}
-                    style={{ color: "black", marginBottom: "3px" }}
-                    className="ms-1"
-                  />
+                  <Github size={24} className="ms-1 gh-logo" />
                 </a>
               </p>
             </Col>
@@ -148,11 +118,7 @@ function Contact() {
                   rel="noopener noreferrer"
                   className="text-decoration-none"
                 >
-                  <Github
-                    size={24}
-                    style={{ color: "black", marginBottom: "3px" }}
-                    className="ms-1"
-                  />
+                  <Github size={24} className="ms-1 gh-logo" />
                 </a>
               </p>
             </Col>
@@ -170,11 +136,7 @@ function Contact() {
                   rel="noopener noreferrer"
                   className="text-decoration-none"
                 >
-                  <Github
-                    size={24}
-                    style={{ color: "black", marginBottom: "3px" }}
-                    className="ms-1"
-                  />
+                  <Github size={24} className="ms-1 gh-logo" />
                 </a>
               </p>
             </Col>
@@ -192,27 +154,15 @@ function Contact() {
                   rel="noopener noreferrer"
                   className="text-decoration-none"
                 >
-                  <Github
-                    size={24}
-                    style={{ color: "black", marginBottom: "3px" }}
-                    className="ms-1"
-                  />
+                  <Github size={24} className="ms-1 gh-logo" />
                 </a>
               </p>
             </Col>
           </Row>
         </Container>
 
-        <Container
-          style={{
-            borderRadius: "10px",
-            padding: "15px",
-            backgroundColor: "#F5F5F5",
-          }}
-        >
-          <h3 style={{ marginTop: "10px", marginBottom: "20px" }}>
-            Contact Us
-          </h3>
+        <Container className="contact-container">
+          <h3>Contact Us</h3>
           <Form ref={form} onSubmit={sendEmail}>
             <Form.Group className="text-start mb-3">
               <Form.Label>Email address:</Form.Label>
@@ -243,20 +193,10 @@ function Contact() {
               variant="primary"
               type="submit"
               onClick={handleShow}
-              className="roboto-bold"
-              style={{
-                backgroundColor: "#3BA1C8",
-                padding: "10px 22px",
-                marginTop: "20px",
-                color: "white",
-                border: "none",
-                borderRadius: "20px",
-              }}
+              className="roboto-bold custom-btn send-btn"
             >
               Send{" "}
-              <EnvelopeFill
-                style={{ marginLeft: "5px", marginBottom: "3px" }}
-              />
+              <EnvelopeFill className="envelope-icon" />
             </Button>
 
             <Modal show={show} onHide={handleClose}>
