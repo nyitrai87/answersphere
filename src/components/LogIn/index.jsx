@@ -59,15 +59,15 @@ function LogIn() {
     }
   }
 
-  // const onGoogleSignIn = (e) => {
-  //   e.preventDefault();
-  //   if (!isSigningIn) {
-  //     setIsSigningIn(true);
-  //     doSignInWithGoogle().catch(err => {
-  //       setIsSigningIn(false);
-  //     });
-  //   }
-  // }
+  const onGoogleSignIn = (e) => {
+    e.preventDefault();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
+      doSignInWithGoogle().catch(err => {
+        setIsSigningIn(false);
+      });
+    }
+  }
 
   return (
     <Container className="p-3 my-5 d-flex flex-column">
@@ -92,7 +92,7 @@ function LogIn() {
           <Button variant="link" className="m-1 icons">
             <BsTwitter size={24} />
           </Button>
-          <Button variant="link" className="m-1 icons">
+          <Button variant="link" className="m-1 icons" onClick={onGoogleSignIn}>
             <BsGoogle size={24} />
           </Button>
           <Button variant="link" className="m-1 icons">
