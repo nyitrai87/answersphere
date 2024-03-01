@@ -6,6 +6,9 @@ import { Button, Form, Modal, Container, Col, Row, Image } from "react-bootstrap
 import { EnvelopeFill, HeartFill, Github } from "react-bootstrap-icons";
 import logo from "/images/logoBagel.png";
 import Anna from "/images/Anna-avatar.png";
+import Ioana from "/images/Ioana-avatar.png";
+import Adam from "/images/Adam-avatar.jpg";
+import Rowan from "/images/Rowan-avatar.jpg";
 import "./index.css";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
@@ -39,9 +42,20 @@ function Contact() {
         <h2>About Us</h2>
         <Container className="about-us mt-5">
           <p>
-            <Link className="as-link" to="https://github.com/nyitrai87/answersphere" target="_blank">
-              AnswerSphere
-            </Link>{" "}
+            <span style={{ fontWeight: "bold", color: "#3BA1C8" }}>
+              <a
+                href="https://github.com/nyitrai87/answersphere"
+                target="_blank"
+                style={{ color: "#3BA1C8", textDecoration: "none" }}
+              >
+                AnswerSphere{" "}
+                <Github
+                  size={24}
+                  style={{ color: "black", marginBottom: "3px" }}
+                  className="ms-1"
+                />
+              </a>
+            </span>{" "}
             was created by 5 international students of the{" "}
             <Link
               className="edx-link"
@@ -70,7 +84,7 @@ function Contact() {
           <Row>
             <Col xs={6} md={4}>
               <Image
-                src={logo}
+                src={Rowan}
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
@@ -88,7 +102,7 @@ function Contact() {
             </Col>
             <Col xs={6} md={4}>
               <Image
-                src={logo}
+                src={Adam}
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
@@ -124,7 +138,7 @@ function Contact() {
             </Col>
             <Col xs={6} md={4}>
               <Image
-                src={logo}
+                src={Ioana}
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
