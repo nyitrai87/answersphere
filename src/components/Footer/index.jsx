@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowUpCircle, HeartFill } from "react-bootstrap-icons";
 import { Navbar, Container, Row, Col } from "react-bootstrap";
+import "./index.css";
 
 function Footer() {
   const [showButton, setShowButton] = useState(false);
@@ -26,41 +27,21 @@ function Footer() {
 
   return (
     <>
-      <Navbar
-        fixed="bottom"
-        style={{
-          height: "96px",
-          backgroundColor: "#F5F5F5",
-          color: "black",
-          padding: "8px",
-        }}
-      >
+      <Navbar className="footer" fixed="bottom">
         <Container>
-          <Row className="justify-content-center">
+          <Row>
             <Col>
-              <Navbar.Text
-                style={{ fontSize: "smaller", color: "black" }}
-                className="text-center"
-              >
+              <Navbar.Text>
                 © 2024 Created with{" "}
-                <HeartFill
-                  size={16}
-                  style={{ verticalAlign: "middle", color: "#3BA1C8" }}
-                />{" "}
-                and{" "}
-                <a
-                  href="https://skillsforlife.edx.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <HeartFill className="heart-icon" size={16} />{" and "}
+                <a href="https://skillsforlife.edx.org" target="_blank">
                   EdX
-                </a>{" "}
-                support.
+                </a>{" support."}
               </Navbar.Text>
             </Col>
           </Row>
-          <Row className="justify-content-end">
-            <Col xs="auto" style={{ marginLeft: "20px" }}>
+          <Row>
+            <Col xs="auto">
               <ArrowUpCircle
                 size={22}
                 onClick={scrollToTop}
