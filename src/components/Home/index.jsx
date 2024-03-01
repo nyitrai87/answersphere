@@ -95,6 +95,14 @@ function Home() {
               variant="primary"
               type="submit"
               className="roboto-bold custom-btn ask-btn"
+              style={{
+                backgroundColor: "#3BA1C8",
+                padding: "10px 22px",
+                marginTop: "20px",
+                color: "white",
+                border: "none",
+                borderRadius: "20px",
+              }}
             >
               Ask the Universe
             </Button>
