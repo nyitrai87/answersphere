@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { BsFacebook, BsTwitter, BsGoogle, BsGithub } from "react-icons/bs";
 import "./index.css";
-import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../firebase/auth'
+import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../firebase/auth'
 import { useAuth } from '../../contexts/authContext'
 
 function LogIn() {
@@ -37,17 +37,20 @@ function LogIn() {
     if (!isSigningIn) {
       setIsSigningIn(true);
       try {
-        if (activeTab === "register") {
+        if (activeTab != "register") {
           // If the user is on the registration tab, attempt to create a new account
-          await doSignInWithEmailAndPassword(email, password);
+          await doCreateUserWithEmailAndPassword(email, password);
+          setSignInMessage(`${email} has signed up`)
         } else {
           // If the user is on the login tab, you can implement login functionality here
+          await doSignInWithEmailAndPassword(email, password);
+          setSignInMessage(`${email} has signed in successfully`)
         }
         // Clear form fields on successful submission
         setEmail('');
         setPassword('');
         setErrorMessage('');
-        setSignInMessage(`${email}has signed in successfully`)
+        
       } catch (error) {
         setErrorMessage(error.message);
       } finally {
