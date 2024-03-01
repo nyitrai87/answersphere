@@ -5,7 +5,7 @@ import "./index.css";
 function AboutApp() {
   return (
     <>
-      <Container className="my-5 aboutApp">
+      <Container className="mt-3 aboutApp">
         <Row>
           <Col>
             <p className="roboto-bold welcomeP">
