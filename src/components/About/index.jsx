@@ -4,7 +4,7 @@ import "./index.css";
 function AboutApp() {
   return (
     <>
-      <Container className="mt-5">
+      <Container>
         <div className="aboutApp">
           <h2>About the App</h2>
           <p>

@@ -6,9 +6,13 @@ import {
   Button,
   InputGroup,
   FormControl,
+  Col, 
+  Row, 
+  Form
 } from "react-bootstrap";
 import { BsFacebook, BsTwitter, BsGoogle, BsGithub } from "react-icons/bs";
 import "./index.css";
+import { Button, Col, Row, Form } from "react-bootstrap";
 
 function LogIn() {
   // the activeTab state tracks the active tab of the form (login or registration)

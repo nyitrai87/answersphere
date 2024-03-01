@@ -1,7 +1,4 @@
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/esm/Container";
+import { Card, Button, Form, Container } from "react-bootstrap";
 import "./index.css";
 
 import OpenAI from "openai";
@@ -36,29 +33,23 @@ function Home() {
 
   return (
     <>
-      <Container className="mt-5">
-        <Card className="py-4" style={{ backgroundColor: "#3BA1C8" }}>
+      <Container>
+        <Card className="py-4 jumbotron">
           <Card.Body>
-            <Card.Text
-              className="roboto-bold"
-              style={{ color: "white", fontSize: "62px" }}
-            >
+            <Card.Text className="roboto-bold jumbo-txt-lg">
               Ask the Universe,
               <br /> Receive its Wisdom
             </Card.Text>
           </Card.Body>
           <Card.Body>
-            <Card.Text
-              className="roboto-bold"
-              style={{ color: "white", fontSize: "22px" }}
-            >
+            <Card.Text className="roboto-bold jumbo-txt-sm">
               Fill in all fields and receive what you seek - it is also looking
               for you!
             </Card.Text>
           </Card.Body>
         </Card>
 
-        <Container style={{ backgroundColor: "#F5F5F5", marginTop: "20px" }}>
+        <Container className="ask-container">
           <Form className="py-5" onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3 row">
               <div className="col-12 col-lg-9">
@@ -77,15 +68,15 @@ function Home() {
                   aria-label="Select what you need from the universe today"
                   name="need"
                 >
-                  <option value={null} disabled selected>
+                  <option>
                     What do you need today?
                   </option>
-                  <option>Ask a question</option>
-                  <option>Get advice</option>
-                  <option>Find inspiration</option>
-                  <option>Daily affirmation</option>
-                  <option>Surprise me</option>
-                  <option>Decide: Yes or No</option>
+                  <option value="question">Ask a question</option>
+                  <option value="advice">Get advice</option>
+                  <option value="inspiration">Find inspiration</option>
+                  <option value="affirmation">Daily affirmation</option>
+                  <option value="surprise">Surprise me</option>
+                  <option value="ask">Decide: Yes or No</option>
                 </Form.Select>
               </div>
             </Form.Group>
@@ -103,7 +94,7 @@ function Home() {
             <Button
               variant="primary"
               type="submit"
-              className="roboto-bold custom-askTheUniverse"
+              className="roboto-bold custom-btn ask-btn"
               style={{
                 backgroundColor: "#3BA1C8",
                 padding: "10px 22px",

@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 function AnswerPage() {
   return (
     <>
-      <Container className="mt-5">
+      <Container>
         <div className="AnswerPage">
           <p>{Today}</p>
           <h2>Answers</h2>
