@@ -12,6 +12,8 @@ import {
 } from "react-bootstrap";
 import { BsFacebook, BsTwitter, BsGoogle, BsGithub } from "react-icons/bs";
 import "./index.css";
+import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../firebase/auth'
+import { useAuth } from '../../contexts/authContext'
 
 function LogIn() {
   // the activeTab state tracks the active tab of the form (login or registration)
@@ -21,6 +23,48 @@ function LogIn() {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+
+  const userLoggedIn = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signInMessage, setSignInMessage] = useState('');
+
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
+      try {
+        if (activeTab === "register") {
+          // If the user is on the registration tab, attempt to create a new account
+          await doSignInWithEmailAndPassword(email, password);
+        } else {
+          // If the user is on the login tab, you can implement login functionality here
+        }
+        // Clear form fields on successful submission
+        setEmail('');
+        setPassword('');
+        setErrorMessage('');
+        setSignInMessage(`${email}has signed in successfully`)
+      } catch (error) {
+        setErrorMessage(error.message);
+      } finally {
+        setIsSigningIn(false);
+      }
+    }
+  }
+
+  // const onGoogleSignIn = (e) => {
+  //   e.preventDefault();
+  //   if (!isSigningIn) {
+  //     setIsSigningIn(true);
+  //     doSignInWithGoogle().catch(err => {
+  //       setIsSigningIn(false);
+  //     });
+  //   }
+  // }
 
   return (
     <Container className="p-3 my-5 d-flex flex-column">
@@ -58,12 +102,20 @@ function LogIn() {
 
       {/* component from React Bootstrap for entering an email */}
       <InputGroup className="mb-4">
-        <FormControl placeholder="Email address" />
+        <FormControl 
+        type="email"
+        placeholder="Email address"                  
+        value={email}
+        onChange={(e) => { setEmail(e.target.value) }}/>
       </InputGroup>
 
       {/* component from React Bootstrap for entering password */}
       <InputGroup className="mb-4">
-        <FormControl placeholder="Password" />
+        <FormControl 
+        type="password"
+        placeholder="Password" 
+        value={password}
+        onChange={(e) => { setPassword(e.target.value) }}/>
       </InputGroup>
 
       {/* This is a conditional operator: it displays a specific JSX block only if the current tab is login. */}
@@ -74,7 +126,12 @@ function LogIn() {
         </div>
       )} */}
 
-      <Button className="custom-logInBtn">
+      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+      {<p>{signInMessage}</p>}
+
+      <Button className="custom-logInBtn"
+              onClick={onSubmit}
+              disabled={isSigningIn}>
         {activeTab === "login" ? "Sign in" : "Sign up"}
       </Button>
 
@@ -83,10 +140,8 @@ function LogIn() {
         {activeTab === "login" ? "Not a member? " : "Already have an account? "}
         <button
           onClick={() =>
-            setActiveTab(activeTab === "login" ? "register" : "login")
-          }
-          className="custom-logInBtn"
-        >
+            setActiveTab(activeTab === "login" ? "register" : "login")}
+          className="custom-logInBtn">
           {activeTab === "login" ? "Register" : "Sign in"}
         </button>
       </p>
