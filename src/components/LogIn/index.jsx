@@ -39,9 +39,11 @@ function LogIn() {
       try {
         if (activeTab != "register") {
           // If the user is on the registration tab, attempt to create a new account
-          await doCreateUserWithEmailAndPassword(email, password);
+          await doCreateUserWithEmailAndPassword(email, password).then(cred => {
+            console.log(cred)
+          });
           setSignInMessage(`${email} has signed up`)
-        } else {
+        } else if (activeTab === "register") {
           // If the user is on the login tab, you can implement login functionality here
           await doSignInWithEmailAndPassword(email, password);
           setSignInMessage(`${email} has signed in successfully`)
