@@ -24,12 +24,12 @@ function LogIn() {
     setActiveTab(tab);
   };
 
-  const userLoggedIn = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [signInMessage, setSignInMessage] = useState('');
+  const [userID, setUserID] = useState('');
 
 
   const onSubmit = async (e) => {
@@ -40,12 +40,15 @@ function LogIn() {
         if (activeTab != "register") {
           // If the user is on the registration tab, attempt to create a new account
           await doCreateUserWithEmailAndPassword(email, password).then(cred => {
-            console.log(cred)
+            //set the user id to firebase's user id
+            setUserID(`${cred.user.id}`)
           });
           setSignInMessage(`${email} has signed up`)
         } else if (activeTab === "register") {
           // If the user is on the login tab, you can implement login functionality here
-          await doSignInWithEmailAndPassword(email, password);
+          await doSignInWithEmailAndPassword(email, password).then(cred => {
+            setUserID(`${cred.user.id}`)
+          });
           setSignInMessage(`${email} has signed in successfully`)
         }
         // Clear form fields on successful submission
@@ -73,6 +76,7 @@ function LogIn() {
   }
 
   return (
+    <div>
     <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
       {/* the Tabs component from React Bootstrap. 
         We pass to it the current active tab (activeKey) + the tab change handler function (onSelect) + classes for styling. */}
@@ -140,7 +144,7 @@ function LogIn() {
               disabled={isSigningIn}>
         {activeTab === "login" ? "Sign in" : "Sign up"}
       </Button>
-
+      </Form>
       {/* toggling between the login and registration forms */}
       <p className="text-center mt-2">
         {activeTab === "login" ? "Not a member? " : "Already have an account? "}
@@ -151,7 +155,7 @@ function LogIn() {
           {activeTab === "login" ? "Register" : "Sign in"}
         </button>
       </p>
-    </Form>
+</div>
   );
 }
 
