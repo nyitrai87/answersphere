@@ -113,8 +113,13 @@ function Home() {
           {answer ? (
             <>
               <div>{answer}</div>
-              <Button>Retry</Button>
-              <Button onClick={() => setAnswer(undefined)}>New question</Button>
+              <Button className="retry">Retry</Button>
+              <Button
+                className="new-guestion"
+                onClick={() => setAnswer(undefined)}
+              >
+                New question
+              </Button>
             </>
           ) : (
             <QuestionForm onSubmit={handleFormSubmit} />
