@@ -82,7 +82,7 @@ function Home() {
         { role: "system", content: "You are a helpful assistant." },
         {
           role: "user",
-          content: `Hi, my name is ${formValues.name}.\n I would like to ${formValues.need}.\n${formValues}\n Please could you respond with only a paragraph containing at max 100 words.`,
+          content: `Hi, my name is ${formValues.name}.\n I would like to ${formValues.need}.\n${formValues.text}\n Please could you respond with only a paragraph containing at max 100 words.`,
         },
       ],
       model: "gpt-3.5-turbo",
