@@ -112,10 +112,41 @@ function Home() {
         <Container className="ask-container">
           {answer ? (
             <>
-              <div>{answer}</div>
-              <Button className="retry">Retry</Button>
+
+              {/* <div>{answer}</div> */}
+
+              <div className="response">
+                 <strong>Answer</strong><br></br> 
+                 {answer}
+               </div>
+
+
+              <Button className="retry"
+               style={{
+                backgroundColor: "#3BA1C8",
+                padding: "10px 22px",
+                marginTop: "10px",
+                marginBottom: "20px",
+                color: "white",
+                border: "none",
+                borderRadius: "20px",
+                marginRight: "20px",
+              }}
+              >Retry</Button>
+              
               <Button
-                className="new-guestion"
+                className="new-question"
+                style={{
+                  backgroundColor: "#3BA1C8",
+                  padding: "10px 22px",
+                  marginTop: "10px",
+                  marginBottom: "20px",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "20px",
+                  marginLeft: "20px",
+                }}
+
                 onClick={() => setAnswer(undefined)}
               >
                 New question
