@@ -1,0 +1,45 @@
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.custom-askTheUniverse {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: #3ba1c8;
+  padding: 10px 22px;
+  margin-left: 10px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
+
+.jumbotron {
+  background-color: #3BA1C8;
+  color: #fff;
+}
+
+.jumbo-txt-lg {
+  font-size: 62px;
+}
+
+.jumbo-txt-sm {
+  font-size: 22px;
+}
+
+.ask-container {
+  background-color: #F5F5F5;
+  margin-top: 20px;
+}
+
+.ask-btn {
+  margin-top: 20px;
+}
+.response {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+}
+
