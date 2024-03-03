@@ -1,0 +1,37 @@
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+.custom-login {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: #3ba1c8;
+  padding: 10px 22px;
+  margin-left: 10px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
+.custom-nav {
+  height: 80px;
+  background-color: #F5F5F5 !important;
+}
+
+.app-logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.navbar-collapse {
+  background-color: #F5F5F5;
+}
+

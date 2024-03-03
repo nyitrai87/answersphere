@@ -112,6 +112,7 @@ function Home() {
         <Container className="ask-container">
           {answer ? (
             <>
+
               {/* <div>{answer}</div> */}
 
               <div className="response">
@@ -145,6 +146,7 @@ function Home() {
                   borderRadius: "20px",
                   marginLeft: "20px",
                 }}
+
                 onClick={() => setAnswer(undefined)}
               >
                 New question

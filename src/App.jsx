@@ -1,31 +1,35 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as bootstrap from "bootstrap";
+import "./App.css";
 
-import Header from './components/Header/Header'
-import Home from './components/Home/Home';
-import AboutApp from './components/AboutApp/AboutApp';
-import Contact from './components/Contact/Contact'
-import AnswerPage from './components/AnswerPage/AnswerPage'
-import Footer from './components/Footer/Footer';
+import LoginModal from "./components/LoginModal";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Answers from "./components/Answers";
+import Footer from "./components/Footer";
+import LogIn from "./components/LogIn";
 
 function App() {
-
   return (
     <>
+
       <Router>
+        <LoginModal />
         <Header />
         <Routes>
-          <Route path="" element={<Home />} />
-          <Route path="/about" element={<AboutApp />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/answers" element={<AnswerPage />} />
+          <Route path="/answers" element={<Answers />} />
+          <Route path="/login" element={<LogIn />} />
         </Routes>
       </Router>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
