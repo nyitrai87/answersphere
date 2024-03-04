@@ -16,7 +16,7 @@
 }
 
 .jumbotron {
-  background-color: #3BA1C8;
+  background-color: #3ba1c8;
   color: #fff;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .ask-container {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   margin-top: 20px;
 }
 
@@ -44,5 +44,14 @@
   border-radius: 10px;
 }
 
-
-
+.new-question,
+.retry {
+  background-color: "#3BA1C8";
+  padding: 10px 22px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  margin-left: 20px;
+}
