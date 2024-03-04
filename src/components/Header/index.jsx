@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import appLogo from "/images/logoBagel.png";
 import "./index.css";
 
@@ -10,7 +10,7 @@ function Header() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setLoggedIn(true);
       } else {
@@ -64,15 +64,17 @@ function Header() {
               >
                 Contact Us
               </NavLink>
-              <NavLink
-                to="/answers"
-                end
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-              >
-                Answers
-              </NavLink>
+              {loggedIn && (
+                <NavLink
+                  to="/answers"
+                  end
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
+                >
+                  Answers
+                </NavLink>
+              )}
             </Nav>
             {loggedIn ? (
               <Button
@@ -95,8 +97,7 @@ function Header() {
               >
                 Login
               </Button>
-            )
-            }
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
