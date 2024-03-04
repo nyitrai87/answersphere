@@ -73,7 +73,7 @@ function QuestionForm({ onSubmit }) {
 }
 
 function Home() {
-  const { currentUser }= useAuth();
+  const currentUser = useAuth();
   const [answer, setAnswer] = useState();
   // const [need, setNeed] = useState();
   // const [text, setText] = useState();

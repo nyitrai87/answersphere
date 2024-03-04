@@ -32,4 +32,3 @@ export async function addQuestionToFirebase(userId, question) {
     return false; // if it didn't work
   }
 }
-
