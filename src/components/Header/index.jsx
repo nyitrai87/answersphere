@@ -1,9 +1,31 @@
+import { useState, useEffect } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import appLogo from "/images/logoBagel.png";
 import "./index.css";
 
 function Header() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+
+    // Cleanup function
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+  };
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary custom-nav" fixed="top">
@@ -52,15 +74,29 @@ function Header() {
                 Answers
               </NavLink>
             </Nav>
-            <Button
-              variant="primary"
-              type="submit"
-              as={Link}
-              to="/login"
-              className="roboto-bold custom-btn login-btn"
-            >
-              Log in
-            </Button>
+            {loggedIn ? (
+              <Button
+                variant="outline-primary"
+                type="submit"
+                as={Link}
+                to="/"
+                onClick={handleLogout}
+                className="roboto-bold custom-btn login-btn"
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                type="submit"
+                as={Link}
+                to="/login"
+                className="roboto-bold custom-btn login-btn"
+              >
+                Login
+              </Button>
+            )
+            }
           </Navbar.Collapse>
         </Container>
       </Navbar>
