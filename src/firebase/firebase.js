@@ -18,7 +18,7 @@ const firestore = getFirestore(app)
 
 export {app, auth, firestore};
 
-export async function addQuestionToFirebase(userId, question) {
+export async function addQuestionToFirebase(userID, question) {
   try {
     // Add the question to the Firestore collection
     await addDoc(collection(firestore, 'questions'), {

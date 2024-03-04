@@ -37,25 +37,22 @@ function LogIn() {
     if (!isSigningIn) {
       setIsSigningIn(true);
       try {
-        if (activeTab != "register") {
-        // If the user is on the login tab, you can implement login functionality here
-        await doSignInWithEmailAndPassword(email, password)
-        setUserID(cred.user.uid)
-        setSignInMessage(`${email} has signed in successfully`)
-      } else if (activeTab === "register") {
-        // If the user is on the registration tab, attempt to create a new account
-        await doCreateUserWithEmailAndPassword(email, password)
-        .then(cred => {
-          //set the user id to firebase's user id
-          setUserID(cred.user.uid)
-        });
-        setSignInMessage(`${email} has signed up`)
+        let cred; // Define a variable to hold user credentials
+        if (activeTab !== "register") {
+          // If the user is on the login tab, you can implement login functionality here
+          cred = await doSignInWithEmailAndPassword(email, password);
+          setUserID(cred.user.uid);
+          setSignInMessage(`${email} has signed in successfully`);
+        } else if (activeTab === "register") {
+          // If the user is on the registration tab, attempt to create a new account
+          cred = await doCreateUserWithEmailAndPassword(email, password);
+          setUserID(cred.user.uid);
+          setSignInMessage(`${email} has signed up`);
         }
         // Clear form fields on successful submission
         setEmail('');
         setPassword('');
         setErrorMessage('');
-        
       } catch (error) {
         console.error("Error:", error);
         setErrorMessage(error.message);
@@ -63,8 +60,7 @@ function LogIn() {
         setIsSigningIn(false);
       }
     }
-  }
-  console.log(userID)
+  };
 
 
 
