@@ -1,9 +1,11 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
 import "./App.css";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { AuthProvider } from "./contexts/authContext";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -29,19 +31,20 @@ import LogIn from "./components/LogIn";
 function App() {
   return (
     <>
-
-      <Router>
-        <LoginModal />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/answers" element={<Answers />} />
-          <Route path="/login" element={<LogIn />} />
-        </Routes>
-      </Router>
-      <Footer />
+      <AuthProvider>
+        <Router>
+          <LoginModal />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/answers" element={<Answers />} />
+            <Route path="/login" element={<LogIn />} />
+          </Routes>
+        </Router>
+        <Footer />
+      </AuthProvider>
     </>
   );
 }

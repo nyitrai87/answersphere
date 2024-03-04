@@ -6,8 +6,8 @@ import {
   Button,
   InputGroup,
   FormControl,
-  Col, 
-  Row, 
+  Col,
+  Row,
   Form
 } from "react-bootstrap";
 import { BsFacebook, BsTwitter, BsGoogle, BsGithub } from "react-icons/bs";
@@ -77,73 +77,73 @@ function LogIn() {
 
   return (
     <div>
-  <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
-      {/* the Tabs component from React Bootstrap. 
+      <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
+        {/* the Tabs component from React Bootstrap. 
         We pass to it the current active tab (activeKey) + the tab change handler function (onSelect) + classes for styling. */}
-      <Tabs
-        activeKey={activeTab}
-        onSelect={handleTabChange}
-        className="mb-3 d-flex flex-row justify-content-between"
-      >
-        <Tab eventKey="login" title="Login" />
-        <Tab eventKey="register" title="Register" />
-      </Tabs>
+        <Tabs
+          activeKey={activeTab}
+          onSelect={handleTabChange}
+          className="mb-3 d-flex flex-row justify-content-between"
+        >
+          <Tab eventKey="login" title="Login" />
+          <Tab eventKey="register" title="Register" />
+        </Tabs>
 
-      <div className="text-center mb-3">
-        <p>{activeTab === "login" ? "Sign in with:" : "Sign up with:"}</p>
+        <div className="text-center mb-3">
+          <p>{activeTab === "login" ? "Sign in with:" : "Sign up with:"}</p>
 
-        <div className="d-flex justify-content-around">
-          <Button variant="link" className="m-1 icons">
-            <BsFacebook size={24} />
-          </Button>
-          <Button variant="link" className="m-1 icons">
-            <BsTwitter size={24} />
-          </Button>
-          <Button variant="link" className="m-1 icons" onClick={onGoogleSignIn}>
-            <BsGoogle size={24} />
-          </Button>
-          <Button variant="link" className="m-1 icons">
-            <BsGithub size={24} />
-          </Button>
+          <div className="d-flex justify-content-around">
+            <Button variant="link" className="m-1 icons">
+              <BsFacebook size={24} />
+            </Button>
+            <Button variant="link" className="m-1 icons">
+              <BsTwitter size={24} />
+            </Button>
+            <Button variant="link" className="m-1 icons" onClick={onGoogleSignIn}>
+              <BsGoogle size={24} />
+            </Button>
+            <Button variant="link" className="m-1 icons">
+              <BsGithub size={24} />
+            </Button>
+          </div>
+
+          <p className="text-center mt-3">or:</p>
         </div>
 
-        <p className="text-center mt-3">or:</p>
-      </div>
+        {/* component from React Bootstrap for entering an email */}
+        <InputGroup className="mb-4">
+          <FormControl
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => { setEmail(e.target.value) }} />
+        </InputGroup>
 
-      {/* component from React Bootstrap for entering an email */}
-      <InputGroup className="mb-4">
-        <FormControl 
-        type="email"
-        placeholder="Email address"                  
-        value={email}
-        onChange={(e) => { setEmail(e.target.value) }}/>
-      </InputGroup>
+        {/* component from React Bootstrap for entering password */}
+        <InputGroup className="mb-4">
+          <FormControl
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => { setPassword(e.target.value) }} />
+        </InputGroup>
 
-      {/* component from React Bootstrap for entering password */}
-      <InputGroup className="mb-4">
-        <FormControl 
-        type="password"
-        placeholder="Password" 
-        value={password}
-        onChange={(e) => { setPassword(e.target.value) }}/>
-      </InputGroup>
-
-      {/* This is a conditional operator: it displays a specific JSX block only if the current tab is login. */}
-      {/* {activeTab === "login" && (
+        {/* This is a conditional operator: it displays a specific JSX block only if the current tab is login. */}
+        {/* {activeTab === "login" && (
         <div className="d-flex flex-column flex-md-row justify-content-between mx-md-4 mb-4">
           <FormCheck label="Remember me" />
           <a href="!#">Forgot password?</a>
         </div>
       )} */}
 
-      {errorMessage && <p className="text-danger">{errorMessage}</p>}
-      {<p>{signInMessage}</p>}
-      <Button className="custom-logInBtn"
-              type="submit"
-              disabled={isSigningIn}>
-        {activeTab === "login" ? "Sign in" : "Sign up"}
-      </Button>
-    </Form>
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+        {<p>{signInMessage}</p>}
+        <Button className="custom-logInBtn"
+          type="submit"
+          disabled={isSigningIn}>
+          {activeTab === "login" ? "Sign in" : "Sign up"}
+        </Button>
+      </Form>
       {/* toggling between the login and registration forms */}
       <p className="text-center mt-2">
         {activeTab === "login" ? "Not a member? " : "Already have an account? "}
@@ -154,7 +154,7 @@ function LogIn() {
           {activeTab === "login" ? "Register" : "Sign in"}
         </button>
       </p>
-</div>
+    </div>
   );
 }
 
