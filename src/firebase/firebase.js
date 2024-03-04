@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
+import {getFirestore, collection, addDoc} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyANBxkoyaxu1i7T9SmFtbpEBtf6UCaPP8I",
@@ -12,5 +13,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const firestore = getFirestore(app)
 
-export {app, auth};
+export {app, auth, firestore};
+
+export async function addQuestionToFirebase(userId, question) {
+  try {
+    // Add the question to the Firestore collection
+    await addDoc(collection(firestore, 'questions'), {
+      userID: userID, 
+      question: question,
+      createdAt: new Date(), // Timestamp indicating when the question was asked
+    });
+    return true; // if it worked
+  } catch (error) {
+    console.error('Error adding question to Firestore:', error);
+    return false; // if it didn't work
+  }
+}

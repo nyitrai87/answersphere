@@ -1,5 +1,8 @@
 import { Card, Button, Form, Container } from "react-bootstrap";
 import "./index.css";
+import { useAuth } from "../../contexts/authContext"
+import { addQuestionToFirebase } from "../../firebase/firebase";
+
 
 import OpenAI from "openai";
 import { useState } from "react";
@@ -70,7 +73,11 @@ function QuestionForm({ onSubmit }) {
 }
 
 function Home() {
+  const { currentUser }= useAuth();
   const [answer, setAnswer] = useState();
+  // const [need, setNeed] = useState();
+  // const [text, setText] = useState();
+  
   async function handleFormSubmit(e) {
     e.preventDefault();
 
@@ -89,6 +96,15 @@ function Home() {
     });
 
     setAnswer(chatCompletion.choices[0].message.content);
+    
+    if (!currentUser) { //checking to see if a user is logged in
+      return;
+    } try {
+        await addQuestionToFirebase(currentUser.uid, answer)
+        alert("question saved successfully")
+    } catch (error) {
+      console.error("error saving question", error);
+    }
   }
 
   return (
@@ -160,5 +176,6 @@ function Home() {
     </>
   );
 }
+
 
 export default Home;

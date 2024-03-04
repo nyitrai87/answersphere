@@ -39,15 +39,15 @@ function LogIn() {
       try {
         if (activeTab != "register") {
         // If the user is on the login tab, you can implement login functionality here
-        await doSignInWithEmailAndPassword(email, password).then(cred => {
-          setUserID(`${cred.user.id}`)
-        });
+        await doSignInWithEmailAndPassword(email, password)
+        setUserID(cred.user.uid)
         setSignInMessage(`${email} has signed in successfully`)
       } else if (activeTab === "register") {
         // If the user is on the registration tab, attempt to create a new account
-        await doCreateUserWithEmailAndPassword(email, password).then(cred => {
+        await doCreateUserWithEmailAndPassword(email, password)
+        .then(cred => {
           //set the user id to firebase's user id
-          setUserID(`${cred.user.id}`)
+          setUserID(cred.user.uid)
         });
         setSignInMessage(`${email} has signed up`)
         }
@@ -57,12 +57,16 @@ function LogIn() {
         setErrorMessage('');
         
       } catch (error) {
+        console.error("Error:", error);
         setErrorMessage(error.message);
       } finally {
         setIsSigningIn(false);
       }
     }
   }
+  console.log(userID)
+
+
 
   const onGoogleSignIn = (e) => {
     e.preventDefault();
@@ -77,7 +81,7 @@ function LogIn() {
 
   return (
     <div>
-    <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
+  <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
       {/* the Tabs component from React Bootstrap. 
         We pass to it the current active tab (activeKey) + the tab change handler function (onSelect) + classes for styling. */}
       <Tabs
@@ -138,13 +142,12 @@ function LogIn() {
 
       {errorMessage && <p className="text-danger">{errorMessage}</p>}
       {<p>{signInMessage}</p>}
-
       <Button className="custom-logInBtn"
-              onClick={onSubmit}
+              type="submit"
               disabled={isSigningIn}>
         {activeTab === "login" ? "Sign in" : "Sign up"}
       </Button>
-      </Form>
+    </Form>
       {/* toggling between the login and registration forms */}
       <p className="text-center mt-2">
         {activeTab === "login" ? "Not a member? " : "Already have an account? "}
