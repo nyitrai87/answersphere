@@ -1,8 +1,7 @@
 import { Card, Button, Form, Container } from "react-bootstrap";
 import "./index.css";
-import { useAuth } from "../../contexts/authContext"
+import { useAuth } from "../../contexts/authContext";
 import { addQuestionToFirebase } from "../../firebase/firebase";
-
 
 import OpenAI from "openai";
 import { useState } from "react";
@@ -74,11 +73,11 @@ function QuestionForm({ onSubmit }) {
 
 function Home() {
   const currentUser = useAuth();
-  console.log(currentUser)
+  console.log(currentUser);
   const [answer, setAnswer] = useState();
   // const [need, setNeed] = useState();
   // const [text, setText] = useState();
-  
+
   async function handleFormSubmit(e) {
     e.preventDefault();
 
@@ -97,12 +96,14 @@ function Home() {
     });
 
     setAnswer(chatCompletion.choices[0].message.content);
-    
-    if (!currentUser) { //checking to see if a user is logged in
+
+    if (!currentUser) {
+      //checking to see if a user is logged in
       return;
-    } try {
-        await addQuestionToFirebase(currentUser.uid, answer)
-        alert("question saved successfully")
+    }
+    try {
+      await addQuestionToFirebase(currentUser.uid, answer);
+      alert("question saved successfully");
     } catch (error) {
       console.error("error saving question", error);
     }
@@ -129,41 +130,18 @@ function Home() {
         <Container className="ask-container">
           {answer ? (
             <>
-
               {/* <div>{answer}</div> */}
 
               <div className="response">
-                 <strong>Answer</strong><br></br> 
-                 {answer}
-               </div>
+                <strong>Answer</strong>
+                <br></br>
+                {answer}
+              </div>
 
+              <Button className="retry">Retry</Button>
 
-              <Button className="retry"
-               style={{
-                backgroundColor: "#3BA1C8",
-                padding: "10px 22px",
-                marginTop: "10px",
-                marginBottom: "20px",
-                color: "white",
-                border: "none",
-                borderRadius: "20px",
-                marginRight: "20px",
-              }}
-              >Retry</Button>
-              
               <Button
                 className="new-question"
-                style={{
-                  backgroundColor: "#3BA1C8",
-                  padding: "10px 22px",
-                  marginTop: "10px",
-                  marginBottom: "20px",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "20px",
-                  marginLeft: "20px",
-                }}
-
                 onClick={() => setAnswer(undefined)}
               >
                 New question
@@ -177,6 +155,5 @@ function Home() {
     </>
   );
 }
-
 
 export default Home;
