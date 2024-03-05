@@ -33,7 +33,7 @@ function QuestionForm({ onSubmit, isLoggedIn, userName }) {
       {isLoggedIn && (
         <Form.Group className="mb-3 row">
           <div className="col-12 col-lg-9">
-            <p className="helloUserP">Hello, {userName} !</p>
+            <p className="helloUserP">Hello, {userName || "Wisdom Seeker"}!</p>
           </div>
         </Form.Group>
       )}
