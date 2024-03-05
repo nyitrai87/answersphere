@@ -53,3 +53,9 @@
 .custom-btn-answer {
   margin-left: 10px;
 }
+
+.helloUserP {
+  text-align: start;
+  margin-left: 6px;
+  font-size: 1.1em;
+}

@@ -30,16 +30,10 @@ function QuestionForm({ onSubmit, isLoggedIn, userName }) {
 
   return (
     <Form className="py-5" onSubmit={onSubmit}>
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <Form.Group className="mb-3 row">
           <div className="col-12 col-lg-9">
-            <Form.Control
-              type="text"
-              placeholder="What is your name?"
-              name="name"
-              value={userName}
-              disabled
-            />
+            <p className="helloUserP">Hello, {userName} !</p>
           </div>
         </Form.Group>
       )}
