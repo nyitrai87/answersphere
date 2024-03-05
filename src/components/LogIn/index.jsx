@@ -1,9 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Tabs, Tab, Button, InputGroup, FormControl, Form } from "react-bootstrap";
-import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword } from '../../firebase/auth'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import {
+  Tabs,
+  Tab,
+  Button,
+  InputGroup,
+  FormControl,
+  Form,
+} from "react-bootstrap";
+import {
+  doCreateUserWithEmailAndPassword,
+  doSignInWithEmailAndPassword,
+} from "../../firebase/auth";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -12,20 +22,20 @@ function LogIn() {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [userID, setUserID] = useState('');
+  const [userID, setUserID] = useState("");
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/');
-      toast.success('Logged in successfully!', {
+      navigate("/");
+      toast.success("Logged in successfully!", {
         position: "top-center",
-        theme: "colored"
+        theme: "colored",
       });
     }
   }, [isLoggedIn, navigate]);
@@ -43,30 +53,33 @@ function LogIn() {
           cred = await doCreateUserWithEmailAndPassword(email, password);
           setUserID(cred.user.uid);
           setIsLoggedIn(true);
-          toast.success('Registration successful!', {
+          toast.success("Registration successful!", {
             position: "top-center",
-            theme: "colored"
+            theme: "colored",
           });
           return;
         }
-        setEmail('');
-        setPassword('');
+        setEmail("");
+        setPassword("");
         setIsLoggedIn(true);
       } catch (error) {
         console.error("Error:", error);
-        if (activeTab === "register" && error.code === "auth/email-already-in-use") {
-          toast.error('This email address is already in use!', {
+        if (
+          activeTab === "register" &&
+          error.code === "auth/email-already-in-use"
+        ) {
+          toast.error("This email address is already in use!", {
             position: "top-center",
-            theme: "colored"
+            theme: "colored",
           });
         } else {
-          toast.error('Username or password incorrect. Please try again!', {
+          toast.error("Username or password incorrect. Please try again!", {
             position: "top-center",
-            theme: "colored"
+            theme: "colored",
           });
         }
-        setEmail('');
-        setPassword('');
+        setEmail("");
+        setPassword("");
       } finally {
         setIsSigningIn(false);
       }
@@ -85,12 +98,28 @@ function LogIn() {
           <Tab eventKey="register" title="Sign up" />
         </Tabs>
 
+        {activeTab === "register" && (
+          <InputGroup className="mb-4">
+            <FormControl
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </InputGroup>
+        )}
+
         <InputGroup className="mb-4">
           <FormControl
             type="email"
             placeholder="Email address"
             value={email}
-            onChange={(e) => { setEmail(e.target.value) }} />
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
         </InputGroup>
 
         <InputGroup className="mb-4">
@@ -98,12 +127,17 @@ function LogIn() {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => { setPassword(e.target.value) }} />
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </InputGroup>
 
-        <Button className="custom-logInBtn custom-btn"
+        <Button
+          className="custom-logInBtn custom-btn"
           type="submit"
-          disabled={isSigningIn}>
+          disabled={isSigningIn}
+        >
           {activeTab === "login" ? "Login" : "Sign up"}
         </Button>
       </Form>
@@ -112,8 +146,10 @@ function LogIn() {
         {activeTab === "login" ? "Not a member? " : "Already have an account? "}
         <button
           onClick={() =>
-            setActiveTab(activeTab === "login" ? "register" : "login")}
-          className="custom-btn">
+            setActiveTab(activeTab === "login" ? "register" : "login")
+          }
+          className="custom-btn"
+        >
           {activeTab === "login" ? "Sign up" : "Login"}
         </button>
       </p>

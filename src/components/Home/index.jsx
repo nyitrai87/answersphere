@@ -11,25 +11,40 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-function QuestionForm({ onSubmit }) {
+function QuestionForm({ onSubmit, isLoggedIn, userName }) {
+  const [category, setCategory] = useState("");
+  const [question, setQuestion] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
+  function handleCategoryChange(event) {
+    const selectedCategory = event.target.value;
+    setCategory(selectedCategory);
+    setButtonDisabled(false);
+  }
+
+  function handleQuestionChange(event) {
+    if (!category) return;
+    const text = event.target.value;
+    setQuestion(text);
+  }
+
   return (
     <Form className="py-5" onSubmit={onSubmit}>
-      <Form.Group className="mb-3 row">
-        <div className="col-12 col-lg-9">
-          <Form.Control
-            type="text"
-            placeholder="What is your name?"
-            name="name"
-          />
-        </div>
-      </Form.Group>
-
+      {isLoggedIn && (
+        <Form.Group className="mb-3 row">
+          <div className="col-12 col-lg-9">
+            <p className="helloUserP">Hello, {userName || "Wisdom Seeker"}!</p>
+          </div>
+        </Form.Group>
+      )}
       <Form.Group className="mb-3 row">
         <div className="col-12 col-lg-9">
           <Form.Select
             className="w-100"
             aria-label="Select what you need from the universe today"
             name="need"
+            value={category}
+            onChange={handleCategoryChange}
           >
             <option>What do you need today?</option>
             <option value="question">Ask a question</option>
@@ -48,6 +63,9 @@ function QuestionForm({ onSubmit }) {
             type="text"
             placeholder="Share what's on your mind..."
             name="text"
+            value={question}
+            onChange={handleQuestionChange}
+            disabled={!category} // Disable input if category is not selected
           />
         </div>
       </Form.Group>
@@ -55,7 +73,8 @@ function QuestionForm({ onSubmit }) {
       <Button
         variant="primary"
         type="submit"
-        className="roboto-bold custom-btn ask-btn custom-btn"
+        className="roboto-bold custom-btn ask-btn"
+        disabled={!category || !question || buttonDisabled}
       >
         Ask the Universe
       </Button>
@@ -204,23 +223,28 @@ function Home() {
                 <br></br>
                 {answer}
               </div>
+              <div className="buttons-container">
+                <Button
+                  className="retry custom-btn custom-btn-answer"
+                  onClick={() => retryQuestion()}
+                >
+                  Retry
+                </Button>
 
-              <Button
-                className="retry custom-btn"
-                onClick={() => retryQuestion()}
-              >
-                Retry
-              </Button>
-
-              <Button
-                className="new-question custom-btn"
-                onClick={() => setAnswer(undefined)}
-              >
-                New question
-              </Button>
+                <Button
+                  className="new-question custom-btn custom-btn-answer"
+                  onClick={() => setAnswer(undefined)}
+                >
+                  New question
+                </Button>
+              </div>
             </>
           ) : (
-            <QuestionForm onSubmit={handleFormSubmit} />
+            <QuestionForm
+              onSubmit={handleFormSubmit}
+              isLoggedIn={!!currentUser}
+              userName={currentUser?.displayName}
+            />
           )}
         </Container>
       </Container>
