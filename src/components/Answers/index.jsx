@@ -3,12 +3,9 @@ import { useAuth } from "../../contexts/authContext";
 import firebase from "firebase/compat/app";
 import "firebase/firestore";
 import dayjs from "dayjs";
-const Today = dayjs().format("DD/MM/YYYY");
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import cardContainer from "../CardContainer/cardContainer.jsx";
 
 function AnswerPage() {
   const { currentUser } = useAuth();
@@ -32,37 +29,18 @@ function AnswerPage() {
 
   return (
     <>
-      <div className="AnswerPage">
-        <p>{Today}</p>
-
-        <h2>Questions and Answers</h2>
-        <ul>
-          {data.map((item) => (
-            <li key={item.id}>
-              <p>
-                <strong>Question:</strong> {item.question}
-              </p>
-              <p>
-                <strong>Answer:</strong> {item.answer}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div>
         <h1 className="text-center">Answers</h1>
 
         <Row xs={1} sm={2} md={3} className="g-4">
-          {/* //loop the object with the question/answers  */}
-          {projects.map((project) => (
-            <Col key={project.id}>
+          {data.map((item, i) => (
+            <Col key={i}>
               <Card
                 className="h-100"
                 style={{ minWidth: "180px", border: "2px solid #547258" }}
               >
                 <Card.Body>
-                  <Card.Date
+                  {<Card.Text
                     style={{
                       padding: "10px",
                       color: "white",
@@ -70,11 +48,10 @@ function AnswerPage() {
                       borderRadius: "15px",
                     }}
                   >
-                    {search.date}
-                  </Card.Date>
-
-                  <Card.Text>{search.questions}</Card.Text>
-                  <Card.Text>{search.answers}</Card.Text>
+                    {dayjs(item.timestamp.toDate()).format("DD/MM/YYYY")}
+                  </Card.Text>}
+                  <Card.Text>{item.question}</Card.Text>
+                  <Card.Text>{item.answer}</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
