@@ -1,14 +1,3 @@
-.custom-logInBtn {
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  background-color: #3ba1c8;
-  padding: 10px 22px;
-  margin-left: 10px;
-  color: white;
-  border: none;
-  border-radius: 20px;
-}
-
 .icons {
-  color: #feb650;
+  color: #feb650 !important;
 }
