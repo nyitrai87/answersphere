@@ -1,25 +1,14 @@
-import { useState } from "react";
-import {
-  Container,
-  Tabs,
-  Tab,
-  Button,
-  InputGroup,
-  FormControl,
-  Col,
-  Row,
-  Form
-} from "react-bootstrap";
-import { BsFacebook, BsTwitter, BsGoogle, BsGithub } from "react-icons/bs";
-import "./index.css";
-import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../firebase/auth'
-import { useAuth } from '../../contexts/authContext'
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Tabs, Tab, Button, InputGroup, FormControl, Form } from "react-bootstrap";
+import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword } from '../../firebase/auth'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LogIn() {
-  // the activeTab state tracks the active tab of the form (login or registration)
-  const [activeTab, setActiveTab] = useState("login");
+  const navigate = useNavigate();
 
-  //this function handler is called when the tab changes: it updates the activeTab state with the new tab value.
+  const [activeTab, setActiveTab] = useState("login");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -27,90 +16,75 @@ function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [signInMessage, setSignInMessage] = useState('');
   const [userID, setUserID] = useState('');
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+      toast.success('Logged in successfully!', {
+        position: "top-center",
+        theme: "colored"
+      });
+    }
+  }, [isLoggedIn, navigate]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!isSigningIn) {
       setIsSigningIn(true);
       try {
-        let cred; // Define a variable to hold user credentials
+        let cred;
         if (activeTab !== "register") {
-          // If the user is on the login tab, you can implement login functionality here
           cred = await doSignInWithEmailAndPassword(email, password);
           setUserID(cred.user.uid);
-          setSignInMessage(`${email} has signed in successfully`);
         } else if (activeTab === "register") {
-          // If the user is on the registration tab, attempt to create a new account
           cred = await doCreateUserWithEmailAndPassword(email, password);
           setUserID(cred.user.uid);
-          setSignInMessage(`${email} has signed up`);
+          setIsLoggedIn(true);
+          toast.success('Registration successful!', {
+            position: "top-center",
+            theme: "colored"
+          });
+          return;
         }
-        // Clear form fields on successful submission
         setEmail('');
         setPassword('');
-        setErrorMessage('');
+        setIsLoggedIn(true);
       } catch (error) {
         console.error("Error:", error);
-        setErrorMessage(error.message);
+        if (activeTab === "register" && error.code === "auth/email-already-in-use") {
+          toast.error('This email address is already in use!', {
+            position: "top-center",
+            theme: "colored"
+          });
+        } else {
+          toast.error('Username or password incorrect. Please try again!', {
+            position: "top-center",
+            theme: "colored"
+          });
+        }
+        setEmail('');
+        setPassword('');
       } finally {
         setIsSigningIn(false);
       }
     }
   };
 
-
-
-  const onGoogleSignIn = (e) => {
-    e.preventDefault();
-    if (!isSigningIn) {
-      setIsSigningIn(true);
-      doSignInWithGoogle().catch(err => {
-        setIsSigningIn(false);
-        setSignInMessage(`You have signed in with google`)
-      });
-    }
-  }
-
   return (
     <div>
       <Form onSubmit={onSubmit} className="p-3 my-5 d-flex flex-column">
-        {/* the Tabs component from React Bootstrap. 
-        We pass to it the current active tab (activeKey) + the tab change handler function (onSelect) + classes for styling. */}
         <Tabs
           activeKey={activeTab}
           onSelect={handleTabChange}
           className="mb-3 d-flex flex-row justify-content-between"
         >
           <Tab eventKey="login" title="Login" />
-          <Tab eventKey="register" title="Register" />
+          <Tab eventKey="register" title="Sign up" />
         </Tabs>
 
-        <div className="text-center mb-3">
-          <p>{activeTab === "login" ? "Sign in with:" : "Sign up with:"}</p>
-
-          <div className="d-flex justify-content-around">
-            <Button variant="link" className="m-1 icons">
-              <BsFacebook size={24} />
-            </Button>
-            <Button variant="link" className="m-1 icons">
-              <BsTwitter size={24} />
-            </Button>
-            <Button variant="link" className="m-1 icons" onClick={onGoogleSignIn}>
-              <BsGoogle size={24} />
-            </Button>
-            <Button variant="link" className="m-1 icons">
-              <BsGithub size={24} />
-            </Button>
-          </div>
-
-          <p className="text-center mt-3">or:</p>
-        </div>
-
-        {/* component from React Bootstrap for entering an email */}
         <InputGroup className="mb-4">
           <FormControl
             type="email"
@@ -119,7 +93,6 @@ function LogIn() {
             onChange={(e) => { setEmail(e.target.value) }} />
         </InputGroup>
 
-        {/* component from React Bootstrap for entering password */}
         <InputGroup className="mb-4">
           <FormControl
             type="password"
@@ -128,30 +101,20 @@ function LogIn() {
             onChange={(e) => { setPassword(e.target.value) }} />
         </InputGroup>
 
-        {/* This is a conditional operator: it displays a specific JSX block only if the current tab is login. */}
-        {/* {activeTab === "login" && (
-        <div className="d-flex flex-column flex-md-row justify-content-between mx-md-4 mb-4">
-          <FormCheck label="Remember me" />
-          <a href="!#">Forgot password?</a>
-        </div>
-      )} */}
-
-        {errorMessage && <p className="text-danger">{errorMessage}</p>}
-        {<p>{signInMessage}</p>}
-        <Button className="custom-logInBtn"
+        <Button className="custom-logInBtn custom-btn"
           type="submit"
           disabled={isSigningIn}>
-          {activeTab === "login" ? "Sign in" : "Sign up"}
+          {activeTab === "login" ? "Login" : "Sign up"}
         </Button>
       </Form>
-      {/* toggling between the login and registration forms */}
+
       <p className="text-center mt-2">
         {activeTab === "login" ? "Not a member? " : "Already have an account? "}
         <button
           onClick={() =>
             setActiveTab(activeTab === "login" ? "register" : "login")}
-          className="custom-logInBtn">
-          {activeTab === "login" ? "Register" : "Sign in"}
+          className="custom-btn">
+          {activeTab === "login" ? "Sign up" : "Login"}
         </button>
       </p>
     </div>

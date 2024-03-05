@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import appLogo from "/images/logoBagel.png";
@@ -23,7 +25,20 @@ function Header() {
   }, []);
 
   const handleLogout = () => {
-    firebase.auth().signOut();
+    firebase.auth().signOut()
+      .then(() => {
+        toast.warning('Logged out successfully!', {
+          position: "top-center",
+          theme: "colored"
+        });
+      })
+      .catch(error => {
+        console.error('Logout error:', error);
+        toast.error('Failed to log out. Please try again.', {
+          position: "top-center",
+          theme: "colored"
+        });
+      });
   };
 
   return (

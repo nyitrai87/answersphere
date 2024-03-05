@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
@@ -6,6 +5,8 @@ import "./App.css";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { AuthProvider } from "./contexts/authContext";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -31,6 +32,7 @@ import LogIn from "./components/LogIn";
 function App() {
   return (
     <>
+      <ToastContainer />
       <AuthProvider>
         <Router>
           <LoginModal />
