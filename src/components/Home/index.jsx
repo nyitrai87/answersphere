@@ -203,20 +203,21 @@ function Home() {
                 <br></br>
                 {answer}
               </div>
+              <div className="buttons-container">
+                <Button
+                  className="retry custom-btn custom-btn-answer"
+                  onClick={() => retryQuestion()}
+                >
+                  Retry
+                </Button>
 
-              <Button
-                className="retry custom-btn"
-                onClick={() => retryQuestion()}
-              >
-                Retry
-              </Button>
-
-              <Button
-                className="new-question custom-btn"
-                onClick={() => setAnswer(undefined)}
-              >
-                New question
-              </Button>
+                <Button
+                  className="new-question custom-btn custom-btn-answer"
+                  onClick={() => setAnswer(undefined)}
+                >
+                  New question
+                </Button>
+              </div>
             </>
           ) : (
             <QuestionForm onSubmit={handleFormSubmit} />
