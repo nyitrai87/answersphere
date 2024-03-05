@@ -11,40 +11,25 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-function QuestionForm({ onSubmit, isLoggedIn, userName }) {
-  const [category, setCategory] = useState("");
-  const [question, setQuestion] = useState("");
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  function handleCategoryChange(event) {
-    const selectedCategory = event.target.value;
-    setCategory(selectedCategory);
-    setButtonDisabled(false);
-  }
-
-  function handleQuestionChange(event) {
-    if (!category) return;
-    const text = event.target.value;
-    setQuestion(text);
-  }
-
+function QuestionForm({ onSubmit }) {
   return (
     <Form className="py-5" onSubmit={onSubmit}>
-      {isLoggedIn && (
-        <Form.Group className="mb-3 row">
-          <div className="col-12 col-lg-9">
-            <p className="helloUserP">Hello, {userName || "Wisdom Seeker"}!</p>
-          </div>
-        </Form.Group>
-      )}
+      <Form.Group className="mb-3 row">
+        <div className="col-12 col-lg-9">
+          <Form.Control
+            type="text"
+            placeholder="What is your name?"
+            name="name"
+          />
+        </div>
+      </Form.Group>
+
       <Form.Group className="mb-3 row">
         <div className="col-12 col-lg-9">
           <Form.Select
             className="w-100"
             aria-label="Select what you need from the universe today"
             name="need"
-            value={category}
-            onChange={handleCategoryChange}
           >
             <option>What do you need today?</option>
             <option value="question">Ask a question</option>
@@ -63,9 +48,6 @@ function QuestionForm({ onSubmit, isLoggedIn, userName }) {
             type="text"
             placeholder="Share what's on your mind..."
             name="text"
-            value={question}
-            onChange={handleQuestionChange}
-            disabled={!category} // Disable input if category is not selected
           />
         </div>
       </Form.Group>
@@ -73,8 +55,7 @@ function QuestionForm({ onSubmit, isLoggedIn, userName }) {
       <Button
         variant="primary"
         type="submit"
-        className="roboto-bold custom-btn ask-btn"
-        disabled={!category || !question || buttonDisabled}
+        className="roboto-bold custom-btn ask-btn custom-btn"
       >
         Ask the Universe
       </Button>
@@ -87,6 +68,7 @@ function Home() {
   const [answer, setAnswer] = useState();
   const [chat, setChat] = useState();
 
+
   async function storeQandAinFirestore(userId, question, answerContent) {
     if (!userId || !answerContent) {
       console.error("User ID or answer content is undefined or null");
@@ -95,26 +77,44 @@ function Home() {
 
     const db = firebase.firestore();
     try {
-      // Add a new document to the 'answers' collection
-      const answerDocRef = await db.collection("answers").add({
-        userId: userId,
-        answer: answerContent,
-        question: question,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-      console.log("Answer stored with ID: ", answerDocRef.id);
 
-      // // Add a new document to the 'questions' collection
-      // const questionDocRef = await db.collection("questions").add({
-      //   userId: userId,
-      //   question: question,
-      //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      // });
-      // console.log("Question stored with ID: ", questionDocRef.id);
-    } catch (error) {
+      const questionAnswerObj = {
+        userId: userId,
+        question: question,
+        answer: answerContent,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      }
+
+      const jsonString = JSON.stringify(questionAnswerObj);
+
+      const questionAnswerDocRef = await db.collection("questionAnswer").add({
+        questionAnswer: jsonString,
+      })
+      console.log("Question and answer stored with ID: ", qaDocRef.id);
+      } catch (error) {
       console.error("Error adding question and answer:", error);
+      }
     }
-  }
+    
+  //     // Add a new document to the 'answers' collection
+  //     const answerDocRef = await db.collection("answers").add({
+  //       userId: userId,
+  //       answer: answerContent,
+  //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //     });
+  //     console.log("Answer stored with ID: ", answerDocRef.id);
+
+  //     // Add a new document to the 'questions' collection
+  //     const questionDocRef = await db.collection("questions").add({
+  //       userId: userId,
+  //       question: question,
+  //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //     });
+  //     console.log("Question stored with ID: ", questionDocRef.id);
+  //   } catch (error) {
+  //     console.error("Error adding question and answer:", error);
+  //   }
+  // }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -169,6 +169,7 @@ function Home() {
     setAnswer(chatCompletion.choices[0].message.content);
     setChat([...messages, chatCompletion.choices[0].message]);
 
+    
     storeQandAinFirestore(
       currentUser?.uid,
       formValues.text,
@@ -223,28 +224,23 @@ function Home() {
                 <br></br>
                 {answer}
               </div>
-              <div className="buttons-container">
-                <Button
-                  className="retry custom-btn custom-btn-answer"
-                  onClick={() => retryQuestion()}
-                >
-                  Retry
-                </Button>
 
-                <Button
-                  className="new-question custom-btn custom-btn-answer"
-                  onClick={() => setAnswer(undefined)}
-                >
-                  New question
-                </Button>
-              </div>
+              <Button
+                className="retry custom-btn"
+                onClick={() => retryQuestion()}
+              >
+                Retry
+              </Button>
+
+              <Button
+                className="new-question custom-btn"
+                onClick={() => setAnswer(undefined)}
+              >
+                New question
+              </Button>
             </>
           ) : (
-            <QuestionForm
-              onSubmit={handleFormSubmit}
-              isLoggedIn={!!currentUser}
-              userName={currentUser?.displayName}
-            />
+            <QuestionForm onSubmit={handleFormSubmit} />
           )}
         </Container>
       </Container>
