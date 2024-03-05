@@ -48,10 +48,11 @@ function LogIn() {
         let cred;
         if (activeTab !== "register") {
           cred = await doSignInWithEmailAndPassword(email, password);
-          setUserID(cred.user.uid);
+          console.log(cred)
+          // setUserID(cred.user.uid);
         } else if (activeTab === "register") {
-          cred = await doCreateUserWithEmailAndPassword(email, password);
-          setUserID(cred.user.uid);
+          cred = await doCreateUserWithEmailAndPassword(email, password, username);
+          // setUserID(cred.user.uid);
           setIsLoggedIn(true);
           toast.success("Registration successful!", {
             position: "top-center",
@@ -101,7 +102,7 @@ function LogIn() {
         {activeTab === "register" && (
           <InputGroup className="mb-4">
             <FormControl
-              type="text"
+              type="username"
               placeholder="Username"
               value={username}
               onChange={(e) => {
