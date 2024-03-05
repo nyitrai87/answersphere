@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../../contexts/authContext";
 import { Card, Button, Form, Container } from "react-bootstrap";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 import OpenAI from "openai";
 import "./index.css";
 
@@ -37,7 +37,7 @@ function QuestionForm({ onSubmit }) {
             <option value="inspiration">Find inspiration</option>
             <option value="affirmation">Daily affirmation</option>
             <option value="surprise">Surprise me</option>
-            <option value="ask">Decide: Yes or No</option>
+            <option value="decide">Decide: Yes or No</option>
           </Form.Select>
         </div>
       </Form.Group>
@@ -66,8 +66,7 @@ function QuestionForm({ onSubmit }) {
 function Home() {
   const { currentUser } = useAuth();
   const [answer, setAnswer] = useState();
-  // const [need, setNeed] = useState();
-  // const [text, setText] = useState();
+  const [chat, setChat] = useState();
 
   async function storeQandAinFirestore(userId, question, answerContent) {
     if (!userId || !answerContent) {
@@ -78,22 +77,22 @@ function Home() {
     const db = firebase.firestore();
     try {
       // Add a new document to the 'answers' collection
-      const answerDocRef = await db.collection('answers').add({
+      const answerDocRef = await db.collection("answers").add({
         userId: userId,
         answer: answerContent,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
-      console.log('Answer stored with ID: ', answerDocRef.id);
+      console.log("Answer stored with ID: ", answerDocRef.id);
 
       // Add a new document to the 'questions' collection
-      const questionDocRef = await db.collection('questions').add({
+      const questionDocRef = await db.collection("questions").add({
         userId: userId,
         question: question,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
-      console.log('Question stored with ID: ', questionDocRef.id);
+      console.log("Question stored with ID: ", questionDocRef.id);
     } catch (error) {
-      console.error('Error adding question and answer:', error);
+      console.error("Error adding question and answer:", error);
     }
   }
 
@@ -103,20 +102,58 @@ function Home() {
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData.entries());
 
+    let aiTask;
+    switch (formValues.need) {
+      case "question":
+        aiTask =
+          "Answer to the user question with a response of a paragraph containing at max 100 words.";
+        break;
+      case "advice":
+        aiTask =
+          "You should give some advice to the user with a response of a paragraph containing at max 100 words.";
+        break;
+      case "inspiration":
+        aiTask =
+          "You should be an inspirational ai and respond with a paragraph containing at max 100 words.";
+        break;
+      case "affirmation":
+        aiTask =
+          "Be a positive an affirmative ai and respond with a paragraph containing at max 100 words";
+        break;
+      case "surprise":
+        aiTask =
+          "You should tell the user something unexpected with a response of a paragraph containing at max 100 words.";
+        break;
+      case "decide":
+        aiTask = "You can answer only with an yes or no.";
+        break;
+      default:
+        break;
+    }
+
+    const messages = [
+      { role: "system", content: "You are a helpful assistant." },
+      { role: "system", content: aiTask },
+      {
+        role: "user",
+        content: formValues.text,
+        name: formValues.name,
+      },
+    ];
+
     const chatCompletion = await openai.chat.completions.create({
-      messages: [
-        { role: "system", content: "You are a helpful assistant." },
-        {
-          role: "user",
-          content: `Hi, my name is ${formValues.name}.\n I would like to ${formValues.need}.\n${formValues.text}\n Please could you respond with only a paragraph containing at max 100 words.`,
-        },
-      ],
+      messages,
       model: "gpt-3.5-turbo",
     });
 
     setAnswer(chatCompletion.choices[0].message.content);
+    setChat([...messages, chatCompletion.choices[0].message]);
 
-    storeQandAinFirestore(currentUser?.uid, formValues.text, chatCompletion.choices[0].message.content);
+    storeQandAinFirestore(
+      currentUser?.uid,
+      formValues.text,
+      chatCompletion.choices[0].message.content
+    );
   }
 
   return (
@@ -148,7 +185,12 @@ function Home() {
                 {answer}
               </div>
 
-              <Button className="retry custom-btn">Retry</Button>
+              <Button
+                className="retry custom-btn"
+                onClick={() => retryQuestion()}
+              >
+                Retry
+              </Button>
 
               <Button
                 className="new-question custom-btn"
