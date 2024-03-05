@@ -68,6 +68,7 @@ function Home() {
   const [answer, setAnswer] = useState();
   const [chat, setChat] = useState();
 
+
   async function storeQandAinFirestore(userId, question, answerContent) {
     if (!userId || !answerContent) {
       console.error("User ID or answer content is undefined or null");
@@ -76,26 +77,44 @@ function Home() {
 
     const db = firebase.firestore();
     try {
-      // Add a new document to the 'answers' collection
-      const answerDocRef = await db.collection("answers").add({
-        userId: userId,
-        answer: answerContent,
-        question: question,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-      console.log("Answer stored with ID: ", answerDocRef.id);
 
-      // // Add a new document to the 'questions' collection
-      // const questionDocRef = await db.collection("questions").add({
-      //   userId: userId,
-      //   question: question,
-      //   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      // });
-      // console.log("Question stored with ID: ", questionDocRef.id);
-    } catch (error) {
+      const questionAnswerObj = {
+        userId: userId,
+        question: question,
+        answer: answerContent,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      }
+
+      const jsonString = JSON.stringify(questionAnswerObj);
+
+      const questionAnswerDocRef = await db.collection("questionAnswer").add({
+        questionAnswer: jsonString,
+      })
+      console.log("Question and answer stored with ID: ", qaDocRef.id);
+      } catch (error) {
       console.error("Error adding question and answer:", error);
+      }
     }
-  }
+    
+  //     // Add a new document to the 'answers' collection
+  //     const answerDocRef = await db.collection("answers").add({
+  //       userId: userId,
+  //       answer: answerContent,
+  //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //     });
+  //     console.log("Answer stored with ID: ", answerDocRef.id);
+
+  //     // Add a new document to the 'questions' collection
+  //     const questionDocRef = await db.collection("questions").add({
+  //       userId: userId,
+  //       question: question,
+  //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //     });
+  //     console.log("Question stored with ID: ", questionDocRef.id);
+  //   } catch (error) {
+  //     console.error("Error adding question and answer:", error);
+  //   }
+  // }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -150,6 +169,7 @@ function Home() {
     setAnswer(chatCompletion.choices[0].message.content);
     setChat([...messages, chatCompletion.choices[0].message]);
 
+    
     storeQandAinFirestore(
       currentUser?.uid,
       formValues.text,
