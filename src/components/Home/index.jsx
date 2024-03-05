@@ -156,6 +156,25 @@ function Home() {
     );
   }
 
+  async function retryQuestion() {
+    const messages = [
+      ...chat,
+      {
+        role: "user",
+        content:
+          "give me an alternative response to my previous question, I didn't like your response",
+      },
+    ];
+
+    const chatCompletion = await openai.chat.completions.create({
+      messages,
+      model: "gpt-3.5-turbo",
+    });
+
+    setAnswer(chatCompletion.choices[0].message.content);
+    setChat([...messages, chatCompletion.choices[0].message]);
+  }
+
   return (
     <>
       <Container>
