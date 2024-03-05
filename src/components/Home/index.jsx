@@ -1,10 +1,10 @@
-import { Card, Button, Form, Container } from "react-bootstrap";
-import "./index.css";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/authContext";
-import { addQuestionToFirebase } from "../../firebase/firebase";
-
+import { Card, Button, Form, Container } from "react-bootstrap";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 import OpenAI from "openai";
-import { useState } from "react";
+import "./index.css";
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_OPENAI_KEY,
@@ -55,15 +55,7 @@ function QuestionForm({ onSubmit }) {
       <Button
         variant="primary"
         type="submit"
-        className="roboto-bold custom-btn ask-btn"
-        style={{
-          backgroundColor: "#3BA1C8",
-          padding: "10px 22px",
-          marginTop: "20px",
-          color: "white",
-          border: "none",
-          borderRadius: "20px",
-        }}
+        className="roboto-bold custom-btn ask-btn custom-btn"
       >
         Ask the Universe
       </Button>
@@ -72,11 +64,38 @@ function QuestionForm({ onSubmit }) {
 }
 
 function Home() {
-  const currentUser = useAuth();
-  console.log(currentUser);
+  const { currentUser } = useAuth();
   const [answer, setAnswer] = useState();
   // const [need, setNeed] = useState();
   // const [text, setText] = useState();
+
+  async function storeQandAinFirestore(userId, question, answerContent) {
+    if (!userId || !answerContent) {
+      console.error("User ID or answer content is undefined or null");
+      return;
+    }
+
+    const db = firebase.firestore();
+    try {
+      // Add a new document to the 'answers' collection
+      const answerDocRef = await db.collection('answers').add({
+        userId: userId,
+        answer: answerContent,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      console.log('Answer stored with ID: ', answerDocRef.id);
+
+      // Add a new document to the 'questions' collection
+      const questionDocRef = await db.collection('questions').add({
+        userId: userId,
+        question: question,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      console.log('Question stored with ID: ', questionDocRef.id);
+    } catch (error) {
+      console.error('Error adding question and answer:', error);
+    }
+  }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -97,16 +116,7 @@ function Home() {
 
     setAnswer(chatCompletion.choices[0].message.content);
 
-    if (!currentUser) {
-      //checking to see if a user is logged in
-      return;
-    }
-    try {
-      await addQuestionToFirebase(currentUser.uid, answer);
-      alert("question saved successfully");
-    } catch (error) {
-      console.error("error saving question", error);
-    }
+    storeQandAinFirestore(currentUser?.uid, formValues.text, chatCompletion.choices[0].message.content);
   }
 
   return (
@@ -138,10 +148,10 @@ function Home() {
                 {answer}
               </div>
 
-              <Button className="retry">Retry</Button>
+              <Button className="retry custom-btn">Retry</Button>
 
               <Button
-                className="new-question"
+                className="new-question custom-btn"
                 onClick={() => setAnswer(undefined)}
               >
                 New question

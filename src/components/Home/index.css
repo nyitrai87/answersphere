@@ -43,15 +43,3 @@
   background-color: #f6f6f6;
   border-radius: 10px;
 }
-
-.new-question,
-.retry {
-  background-color: "#3BA1C8";
-  padding: 10px 22px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  margin-left: 20px;
-}
