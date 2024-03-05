@@ -2,13 +2,22 @@ import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Modal, Container, Col, Row, Image } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Modal,
+  Container,
+  Col,
+  Row,
+  Image,
+} from "react-bootstrap";
 import { EnvelopeFill, HeartFill, Github } from "react-bootstrap-icons";
 import logo from "/images/logoBagel.png";
 import Anna from "/images/Anna-avatar.png";
 import Ioana from "/images/Ioana-avatar.png";
 import Adam from "/images/Adam-avatar.jpg";
 import Rowan from "/images/Rowan-avatar.jpg";
+import Isabel from "/images/Isabel-avatar.jpg";
 import "./index.css";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
@@ -68,10 +77,13 @@ function Contact() {
             field of Web Development.
           </p>
           <p>
-            At the{" "}
-            <HeartFill className="heart-icon" size={16} />{" "}
-            of the initiative to create{" "}
-            <Link className="as-link" to="https://github.com/nyitrai87/answersphere" target="_blank">
+            At the <HeartFill className="heart-icon" size={16} /> of the
+            initiative to create{" "}
+            <Link
+              className="as-link"
+              to="https://github.com/nyitrai87/answersphere"
+              target="_blank"
+            >
               AnswerSphere
             </Link>{" "}
             lies a dynamic blend of ambition and curiosity. It was more than
@@ -120,7 +132,7 @@ function Contact() {
             </Col>
             <Col xs={6} md={4}>
               <Image
-                src={logo}
+                src={Isabel}
                 roundedCircle
                 className="img-thumbnail smaller-avatar"
               />
@@ -209,8 +221,7 @@ function Contact() {
               onClick={handleShow}
               className="roboto-bold custom-btn send-btn"
             >
-              Send{" "}
-              <EnvelopeFill className="envelope-icon" />
+              Send <EnvelopeFill className="envelope-icon" />
             </Button>
 
             <Modal show={show} onHide={handleClose}>
