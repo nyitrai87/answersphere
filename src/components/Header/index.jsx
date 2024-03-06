@@ -43,7 +43,7 @@ function Header() {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary custom-nav" fixed="top">
+      <Navbar expand="lg" className="custom-nav" fixed="top">
         <Container>
           <Navbar.Brand href="/" className="roboto-regular">
             <img className="app-logo" src={appLogo} alt="App Logo" />
@@ -51,7 +51,7 @@ function Header() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="ms-auto">
               <NavLink
                 to=""
                 end
@@ -81,13 +81,13 @@ function Header() {
               </NavLink>
               {loggedIn && (
                 <NavLink
-                  to="/answers"
+                  to="/history"
                   end
                   className={({ isActive }) =>
                     isActive ? "nav-link active" : "nav-link"
                   }
                 >
-                  Answers
+                  History
                 </NavLink>
               )}
             </Nav>
