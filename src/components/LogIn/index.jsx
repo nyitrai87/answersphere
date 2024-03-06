@@ -1,17 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Tabs,
-  Tab,
-  Button,
-  InputGroup,
-  FormControl,
-  Form,
-} from "react-bootstrap";
-import {
-  doCreateUserWithEmailAndPassword,
-  doSignInWithEmailAndPassword,
-} from "../../firebase/auth";
+import { Tabs, Tab, Button, InputGroup, FormControl, Form } from "react-bootstrap";
+import { doCreateUserWithEmailAndPassword, doSignInWithEmailAndPassword } from "../../firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,7 +16,7 @@ function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [userID, setUserID] = useState("");
+  //const [userID, setUserID] = useState("");
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

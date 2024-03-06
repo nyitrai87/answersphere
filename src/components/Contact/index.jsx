@@ -12,7 +12,6 @@ import {
   Image,
 } from "react-bootstrap";
 import { EnvelopeFill, HeartFill, Github } from "react-bootstrap-icons";
-import logo from "/images/logoBagel.png";
 import Anna from "/images/Anna-avatar.png";
 import Ioana from "/images/Ioana-avatar.png";
 import Adam from "/images/Adam-avatar.jpg";
@@ -187,7 +186,7 @@ function Contact() {
           </Row>
         </Container>
 
-        <Container className="contact-container">
+        <Container className="contact-container rounded-3">
           <h3>Contact Us</h3>
           <Form ref={form} onSubmit={sendEmail}>
             <Form.Group className="text-start mb-3">

@@ -204,7 +204,7 @@ function Home() {
   return (
     <>
       <Container>
-        <Card className="py-4 jumbotron">
+        <Card className="py-4 jumbotron rounded-3">
           <Card.Body>
             <Card.Text className="roboto-bold jumbo-txt-lg">
               Ask the Universe,
@@ -219,12 +219,10 @@ function Home() {
           </Card.Body>
         </Card>
 
-        <Container className="ask-container">
+        <Container className="ask-container rounded-3">
           {answer ? (
             <>
-              {/* <div>{answer}</div> */}
-
-              <div className="response">
+              <div className="response rounded-3">
                 <strong>Answer</strong>
                 <br></br>
                 {answer}

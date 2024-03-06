@@ -10,20 +10,9 @@
   font-style: normal;
 }
 
-
-.custom-login {
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  background-color: #3ba1c8;
-  padding: 10px 22px;
-  margin-left: 10px;
-  color: white;
-  border: none;
-  border-radius: 20px;
-}
 .custom-nav {
   height: 80px;
-  background-color: #F5F5F5 !important;
+  background: #F5F5F5 !important;
 }
 
 .app-logo {
@@ -32,6 +21,9 @@
 }
 
 .navbar-collapse {
-  background-color: #F5F5F5;
+  background-color: #F5F5F5 !important;
 }
 
+.login-btn {
+  margin: 15px;
+}

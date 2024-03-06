@@ -12,12 +12,11 @@
   margin-left: 10px;
   color: white;
   border: none;
-  border-radius: 20px;
 }
 
 .jumbotron {
-  background-color: #3ba1c8;
-  color: #fff;
+  background-color: #3ba1c8 !important;
+  color: #fff !important;
 }
 
 .jumbo-txt-lg {
@@ -42,7 +41,6 @@
   margin-top: 30px;
   padding: 10px;
   background-color: #f6f6f6;
-  border-radius: 10px;
   margin-bottom: 20px;
 }
 

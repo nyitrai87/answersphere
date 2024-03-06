@@ -19,7 +19,7 @@ function AboutApp() {
               </a>
               !
             </p>
-            <div className="appDesigned">
+            <div className="appDesigned rounded-3">
               <p className="roboto-regular">
                 Our application is designed for those seeking answers to their
                 questions, seeking advice, daily affirmations, or resolving
@@ -42,7 +42,7 @@ function AboutApp() {
               </li>
             </ul>
           </Col>{" "}
-          <div className="bagelGroup">
+          <div className="bagelGroup rounded-3">
             <p>
               Our logo is a <strong>colorful bagel</strong>, which carries
               symbolic significance from various legends and beliefs. In many
