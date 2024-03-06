@@ -1,18 +1,19 @@
-.roboto-regular {
+.custom-nav {
+  background-color: #F5F5F5;
+}
+
+.custom-brand {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-style: normal;
+  font-size: 1.5rem;
 }
 
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 800;
-  font-style: normal;
+.custom-toggler {
+  border-color: transparent;
 }
 
-.custom-nav {
-  height: 80px;
-  background: #F5F5F5 !important;
+.custom-collapse {
+  background-color: #F5F5F5;
 }
 
 .app-logo {
@@ -20,10 +21,14 @@
   margin-right: 10px;
 }
 
-.navbar-collapse {
-  background-color: #F5F5F5 !important;
+@media (min-width: 992px) {
+  .custom-nav .navbar-nav {
+    margin-right: 15px;
+  }
 }
 
-.login-btn {
-  margin: 15px;
+@media (max-width: 991.99px) {
+  .login-btn {
+    margin-top: 15px;
+  }
 }
