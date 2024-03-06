@@ -24,14 +24,24 @@ It was created by 5 students of the EdX Skills BootCamp , designed to showcase o
 
 ## Screenshots
 
-Screenshot of the Ask the Universe page
-![Screenshot of the Ask the Universe page](public/images/home.png)
+Screenshot of the Ask the Universe page (Guest Access)
+
+![Screenshot of the Ask the Universe page](public/images/homeguest.png)
+
+Screenshot of the Ask the Universe page (Authorized Access)
+
+![Screenshot of the Ask the Universe page](public/images/homelogged.png)
+
+Screenshot of the Ask the Universe page (Answer Image)
+
+![Screenshot of the Ask the Universe page](public/images/answer.png)
 
 Screenshot of the About page
+
 ![Screenshot of the About page](public/images/about.png)
 
 Screenshot of the Contact Us page
-![Screenshot of the Contact Us page](public/images/contactus.png)
+![Screenshot of the Contact Us page](public/images/contact.png)
 
 Screenshot of the History page
 ![Screenshot of the History page](public/images/history.png)
@@ -40,7 +50,7 @@ Screenshot of the History page
 
 [Link to the deployed application in Netlify](https://answersphere.netlify.app)
 
-[Link to the deployed application in GitHub]()
+[Link to the deployed application in GitHub]() *****(Coming Soon)*
 
 ## Technologies used <a name="techs"></a>
 
