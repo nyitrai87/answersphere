@@ -27,8 +27,8 @@ function AboutApp() {
                 awaiting signs from above – and indeed, it's the sign itself.
               </p>
             </div>
-            <p className="roboto-bold twoOptions">Users have two options:</p>
-            <ul className="roboto-regular">
+            <p className="roboto-bold twoOptionsP">Users have two options:</p>
+            <ul className="roboto-regular twoOptionsUl">
               <li>
                 <strong>Guest Access:</strong> Log in as a guest to access basic
                 app features. You can pose a question to the universe and
@@ -43,7 +43,7 @@ function AboutApp() {
             </ul>
           </Col>{" "}
           <div className="bagelGroup rounded-3">
-            <p className="roboto-regular pLogoText">
+            <p className="roboto-regular pLogoText rounded-3">
               Our logo is a <strong>colorful bagel</strong>, which carries
               symbolic significance from various legends and beliefs. In many
               cultures, the bagel is considered a symbol of unity, completeness,
