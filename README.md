@@ -1,5 +1,6 @@
 # AnswerSphere
-[License](https://img.shields.io/badge/License-MIT-blue.svg) 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 
@@ -50,7 +51,6 @@ Screenshot of the History page
 
 [Link to the deployed application in Netlify](https://answersphere.netlify.app)
 
-[Link to the deployed application in GitHub]() *****(Coming Soon)*
 
 ## Technologies used <a name="techs"></a>
 
