@@ -36,8 +36,8 @@ const LoginModal = () => {
             </Modal.Header>
             <Modal.Body>
                 To be able to ask the Universe, you need to choose from the following options:<br /><br />
-                - You can continue as a guest, but you can use the app with some limitations.<br /><br />
-                - You can log in or create an account to use the full functionality, like storing your previous answers and checking them anytime.
+                - You can continue as a guest, but you can only use the app with some limitations.<br /><br />
+                - You can log in or create an account to enjoy full functionality, like storing your previous answers and read them again anytime.
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="primary" className="guest-btn" onClick={handleContinueAsGuest}>
