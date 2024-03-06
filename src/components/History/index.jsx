@@ -38,19 +38,29 @@ function History() {
         <Container className="history-container p-3 rounded-3">
           <Row xs={1} sm={2} md={3} className="g-4">
             {data.map((item, i) => (
-              <Col key={i}>
+              <Col key={i} md={6} lg={4} className="mb-4">
                 <Card className="h-100 history-card">
                   <Card.Body className="rounded-3">
-                    {<Card.Text className="rounded-3 card-date">
-                      {dayjs(item.timestamp.toDate()).format("DD/MM/YYYY")}
-                    </Card.Text>}
+                    {
+                      <Card.Text className="rounded-3 card-date">
+                        {dayjs(item.timestamp.toDate()).format("DD/MM/YYYY")}
+                      </Card.Text>
+                    }
                     <div className="question-div">
-                      <span className="sender">{currentUser.displayName ? currentUser.displayName : "Me"}</span>
-                      <Card.Text className="question-text rounded-4">{item.question}</Card.Text>
+                      <span className="sender">
+                        {currentUser.displayName
+                          ? currentUser.displayName
+                          : "Me"}
+                      </span>
+                      <Card.Text className="question-text rounded-4">
+                        {item.question}
+                      </Card.Text>
                     </div>
                     <div className="answer-div">
                       <span className="sender">Universe</span>
-                      <Card.Text className="answer-text rounded-4">{item.answer}</Card.Text>
+                      <Card.Text className="answer-text rounded-4">
+                        {item.answer}
+                      </Card.Text>
                     </div>
                   </Card.Body>
                 </Card>
