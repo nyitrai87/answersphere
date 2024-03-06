@@ -14,13 +14,19 @@ function History() {
   useEffect(() => {
     if (currentUser) {
       const fetchData = async () => {
-        const db = firebase.firestore();
-        const snapshot = await db
-          .collection("answers")
-          .where("userId", "==", currentUser.uid)
-          .get();
-        const fetchedData = snapshot.docs.map((doc) => doc.data());
-        setData(fetchedData);
+        try {
+          const db = firebase.firestore();
+          const snapshot = await db
+            .collection("answers")
+            .where("userId", "==", currentUser.uid)
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
+            .get();
+          const fetchedData = snapshot.docs.map((doc) => doc.data());
+          console.log("Fetched Data:", fetchedData); // Check fetched data
+          setData(fetchedData);
+        } catch (error) {
+          console.error("Error fetching data:", error); // Log any errors
+        }
       };
 
       fetchData();
@@ -29,7 +35,6 @@ function History() {
       setUserName(currentUser.displayName || "Wisdom Seeker");
     }
   }, [currentUser]);
-  console.log(currentUser.displayName);
 
   return (
     <>
