@@ -44,7 +44,7 @@ function Header() {
   return (
     <Navbar expand="lg" className="custom-nav" fixed="top">
       <Container>
-        <Navbar.Brand className="custom-brand">
+        <Navbar.Brand href="/" className="custom-brand">
           <img className="app-logo" src={appLogo} alt="App Logo" />
           AnswerSphere
         </Navbar.Brand>

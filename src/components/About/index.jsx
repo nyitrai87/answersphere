@@ -43,7 +43,7 @@ function AboutApp() {
             </ul>
           </Col>{" "}
           <div className="bagelGroup rounded-3">
-            <p>
+            <p className="roboto-regular pLogoText">
               Our logo is a <strong>colorful bagel</strong>, which carries
               symbolic significance from various legends and beliefs. In many
               cultures, the bagel is considered a symbol of unity, completeness,

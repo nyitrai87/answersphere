@@ -8,8 +8,29 @@
 
 .custom-btn {
   background-color: #3ba1c8 !important;
-  padding: 10px 22px !important;
+  padding: 10px 22px;
   color: #fff !important;
   border: none !important;
   border-radius: 20px !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+  transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+  background-color: #377d9a !important;
+}
+
+.retry,
+.new-question {
+  width: 200px;
+}
+
+@media (max-width: 600px) {
+  .buttons-container {
+    display: flex;
+  }
+  .retry,
+  .new-question {
+    padding: 5px;
+  }
 }

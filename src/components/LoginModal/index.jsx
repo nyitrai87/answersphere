@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import "./index.css";
 
 const LoginModal = () => {
     const [show, setShow] = useState(false);
@@ -39,10 +40,10 @@ const LoginModal = () => {
                 - You can log in or create an account to use the full functionality, like storing your previous answers and checking them anytime.
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleContinueAsGuest}>
+                <Button variant="primary" className="guest-btn" onClick={handleContinueAsGuest}>
                     Continue as Guest
                 </Button>
-                <Button variant="primary" onClick={handleLogin}>
+                <Button variant="primary" className="custom-btn" onClick={handleLogin}>
                     Login
                 </Button>
             </Modal.Footer>

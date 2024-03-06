@@ -22,7 +22,7 @@
 .bagelImg {
   height: 200px;
   width: auto;
-  margin: 15px
+  margin: 15px;
 }
 
 .bagel-container {
@@ -30,13 +30,19 @@
   justify-content: center;
 }
 
-.bagelGroup {
-  background-color: #f5f5f5;
-  padding: 25px;
-}
-
 .appDesigned {
   background-color: #f5f5f5;
   padding: 20px 25px;
   margin-bottom: 20px;
 }
+
+.pLogoText {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: justify;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+}
+
+

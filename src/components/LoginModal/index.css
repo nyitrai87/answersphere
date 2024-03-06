@@ -1,0 +1,9 @@
+.guest-btn {
+    background-color: #FDB74D !important;
+    color: #000 !important;
+    padding: 10px 22px !important;
+    border: none !important;
+    border-radius: 20px !important;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    transition: background-color 0.3s ease;
+}
