@@ -11,8 +11,8 @@
 }
 
 .smaller-avatar {
-  width: 120px;
-  height: 120px;
+  width: 120px!important;
+  height: 120px!important;
   margin: 10px;
   object-fit: cover;
 }
