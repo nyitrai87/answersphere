@@ -16,8 +16,8 @@ It was created by 5 students of the EdX Skills BootCamp, designed to showcase ou
 - [Screenshots](#screenshots)
 - [Links](#links)
 - [Technologies used](#techs)
-- [Dependencies](#dependencies)
 - [Sources](#sources)
+- [The Team](#team)
 
 ## Screenshots
 ![Mockups](public/images/mockup.jpg)
@@ -27,8 +27,8 @@ It was created by 5 students of the EdX Skills BootCamp, designed to showcase ou
 ![Userflow 2](public/images/userflow2.jpg)
 
 ## Links
-[Link to the deployed application on Netlify](https://answersphere.netlify.app)
-
+- [Deployed application on Netlify](https://answersphere.netlify.app)
+- [Presentation slideshow](public/presentation.pdf)
 
 ## Technologies used <a name="techs"></a>
 <a href="https://react.dev/"><img src="public/logos/react.png" alt="React" title="React" height="50px" /></a>
@@ -48,7 +48,6 @@ It was created by 5 students of the EdX Skills BootCamp, designed to showcase ou
 <a href="https://firebase.google.com/"><img src="public/logos/firebase.png" alt="Firebase" title="Firebase" height="50px" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.netlify.com/"><img src="public/logos/netlify.png" alt="Netlify" title="Netlify" height="50px" /></a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 - [OpenAI](https://www.npmjs.com/package/openai)
 - [EmailJS](https://www.npmjs.com/package/emailjs)
@@ -60,8 +59,11 @@ It was created by 5 students of the EdX Skills BootCamp, designed to showcase ou
 
 ## Sources
 - [MDN Web Docs](https://developer.mozilla.org/en-US/)
-- [ChatGPT](https://chat.openai.com/) to get help implementing Firebase and Firestore
+- [ChatGPT](https://chat.openai.com/) to get help with implementing Firebase and Firestore
 
-
-
-
+## Meet the Team <a name="team"></a>
+- [Anna Chernova](https://github.com/Anna702) - JavaScript, React Bootstrap, CSS texts
+- [Ioana Iosub](https://github.com/IIosub) - JavaScript, OpenAI API, CSS
+- [Rowan Kinross](https://github.com/RowanKinross) - JavaScript, Firebase, tests
+- [Isabel Solana](https://github.com/Joeviser) - JavaScript, ReadMe
+- [Adam Nyitrai](https://github.com/nyitrai87) - JavaScript, Firebase, React Bootstrap, EmailJS
