@@ -62,8 +62,8 @@ It was created by 5 students of the EdX Skills BootCamp, designed to showcase ou
 - [ChatGPT](https://chat.openai.com/) to get help with implementing Firebase and Firestore
 
 ## Meet the Team <a name="team"></a>
-- [Anna Chernova](https://github.com/Anna702) - JavaScript, React Bootstrap, CSS texts
+- [Anna Chernova](https://github.com/Anna702) - JavaScript, React Bootstrap, CSS, design, content writing
 - [Ioana Iosub](https://github.com/IIosub) - JavaScript, OpenAI API, CSS
-- [Rowan Kinross](https://github.com/RowanKinross) - JavaScript, Firebase, tests
+- [Rowan Kinross](https://github.com/RowanKinross) - JavaScript, Firebase, Vitest, DayJS
 - [Isabel Solana](https://github.com/Joeviser) - JavaScript, ReadMe
 - [Adam Nyitrai](https://github.com/nyitrai87) - JavaScript, Firebase, React Bootstrap, EmailJS
